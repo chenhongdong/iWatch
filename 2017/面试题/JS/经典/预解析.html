@@ -52,11 +52,19 @@
     obj3.fn();*/
 
     //5
-    var a = 1;
+    /*var a = 1;
     function f() {
-        console.log(this.a + a);    //NaN
+        console.log(this.a + a);
         var a = 2;
-        console.log(this.a + a);    //3
+        console.log(this.a + a);
     }
-    f();
+    f();*/
+
+    //6
+    /*function fn1() {console.log(this.a);}
+    function fn2() {this.a = 1;}
+    fn2.prototype.a = 2;
+    fn2.a = 3;
+    fn1.call(fn2);      //3
+    fn1.call(new fn2);  //1*/
 </script>
