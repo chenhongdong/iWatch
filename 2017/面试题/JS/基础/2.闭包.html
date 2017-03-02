@@ -43,9 +43,10 @@
     * */
     function count() {
         var num = 1;
-        return function () {
+        function c() {
             return num++;
         }
+        return c;
     }
 
     var c = count();

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{margin:0;padding:0;}
+        main{
+            width: 500px;
+            height:400px;
+            position: absolute;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+            border: 1px dashed palegoldenrod;
+        }
+    </style>
+</head>
+<body>
+<main>
+    <h1>蓝色土耳其</h1>
+    <div>我愿相信，爱有奇迹——小刚</div>
+</main>
+</body>
+</html>
+<script>
+    function fn() {
+        var b = 1;
+
+        return function () {
+            return b++;
+        };
+    }
+
+    var A = fn();
+    console.log(A());
+    console.log(A());
+    console.log(A());
+
+</script>
