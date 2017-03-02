@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    //Function.bind 将函数绑定至对象
+    if (!Function.prototype.bind) {
+        Function.prototype.bind = function (f, o) {
+            var self = this, selfArgs = arguments;
+            return function () {
+                var args = [];
+                for (var i = 1; i < selfArgs.length; i++) args.push(selfArgs[i]);
+                for (var i = 0; i < arguments.length; i++) args.push(arguments[i]);
+                return self.apply(o, args);
+            }
+        }
+    }
+</script>

@@ -14,4 +14,44 @@
     a.x = a = {n: 2};
     console.log(a.x);   //undefined
     console.log(b.x);   //{n: 2}
+
+    //实现一个数组的indexOf方法
+    /*if (!Array.prototype.indexOf) {
+        Array.prototype.indexOf = function (target, pos) {
+            var index = -1;
+            pos = pos * 1 || 0;
+
+            for (var i = 0; i < this.length; i++) {
+                if (i >= pos && this[i] == target) {
+                    index = i;
+                    break;
+                }
+            }
+            return index;
+        }
+    }
+
+    alert([1,2,5,22,99].indexOf(22))*/
+
+    //实现一个方法，将下列数据按照价格从低到高排序
+    var json = {
+        "CA123": {price: 300},
+        "HU123": {price: 180},
+        "MU123": {price: 150},
+        "KN123": {price: 350},
+        "3U123": {price: 200},
+        "SC123": {price: 210},
+    };
+
+    var arr = [];
+
+    for (var i in json) {
+        arr.push({x: i, y: json[i]});
+    }
+
+    arr.sort(function (a, b) {
+        return a.y.price - b.y.price;
+    });
+    
+    console.log(arr);
 </script>

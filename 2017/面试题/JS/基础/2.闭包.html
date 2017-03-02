@@ -3,6 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <script>
+        function test() {
+            var x = 10;
+            var y = 20;
+            return function () {
+                alert(x);
+                alert(y);
+            }
+        }
+        var x = 30;
+        var y = 40;
+        var temp = test();
+        temp();
+    </script>
 </head>
 <body>
 <p>111</p>

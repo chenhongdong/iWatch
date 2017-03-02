@@ -13,9 +13,19 @@
 </body>
 </html>
 <script>
-    var a = 1;
+    /*var a = 1;
     var a = function a() {
         return 2;
     }
-    alert(a);
+    alert(a);*/
+
+    function A() {};
+    A.prototype.x = 10;
+    var a1 = new A();
+    A.prototype = {x:20, y:30};
+    var a2 = new A();
+    alert(a1.x);
+    alert(a1.y);
+    alert(a2.x);
+    alert(a2.y);
 </script>
