@@ -36,7 +36,7 @@
     alert(a);           */
 
     //4
-    var obj1 = {
+    /*var obj1 = {
         name: 'obj1',
         fn: function () {
             console.log(this.name);
@@ -49,5 +49,14 @@
     newFn();
     newFn.call(obj2);
     obj3.fn = newFn;
-    obj3.fn();
+    obj3.fn();*/
+
+    //5
+    var a = 1;
+    function f() {
+        console.log(this.a + a);    //NaN
+        var a = 2;
+        console.log(this.a + a);    //3
+    }
+    f();
 </script>
