@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="demo" class="header active blur">Hello</div>
+</body>
+</html>
+<script>
+    //怎样添加，删除，移动，复制，创建和查找节点
+    /*
+    * 1.创建新节点
+    *   createElement()     //创建一个具体的元素
+    *   createTextNode()    //创建一个文本节点
+    *   createDocumentFragment()    //创建一个文档碎片
+    *
+    * 2.添加，删除，替换，插入
+    *    appendChild()
+    *    removeChild()
+    *    replaceChild()
+    *    insertBefore()
+    *
+    * 3.查找
+    *   getElementsByTagName('div')     //通过标签名
+    *   getElementById('nav')       //通过id
+    *
+    * */
+</script>
+<script>
+    //判断是否存在class名
+    function hasClass(id, name) {
+        var cls = document.getElementById(id).className;
+        var reg = new RegExp('(^|\\s)' + name + '(\\s|$)', 'g');
+        return reg.test(cls);
+    }
+
+    console.log(hasClass('demo', 'active'));
+</script>

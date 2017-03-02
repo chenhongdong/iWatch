@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>对象的继承</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    //js中大概有6种继承方式
+    /*
+    * 1.原型链继承
+    *   基本思想是利用原型让一个引用类型继承另一个引用类型的属性和方法
+    * */
+    function Super() {
+        this.product = 'vue';
+        this.doit = function () {
+            return this.product;
+        }
+    }
+
+    function Sub() {
+        this.author = '尤大';
+    }
+
+    Sub.prototype = new Super();
+    var yxl = new Sub();
+    console.log(yxl.product, yxl.author);
+    console.log(yxl.doit());
+
+    /*
+    * 总结：本质上是重写了原型对象，代之一个新类型的实例
+    *      不能使用对象字面量创建原型方法，因为会重写原型链，导致原型链断裂
+    * */
+</script>
+<script>
+    /*
+    * 2.借用构造函数继承
+    * */
+    function Super2(name) {
+        this.name = name;
+        this.colors = ['red', 'blue', 'pink']
+    }
+
+    function Sub2() {
+        Super2.call(this, 'Vue不错哦');
+        this.author = '尤大';
+    }
+
+    var gzhs = new Sub2();
+    var sss = new Super2();
+    console.log(gzhs.name, gzhs.author);
+    /*
+    * 总结：优点：可以像父类构造函数中传递参数
+    *      缺点：不能进行函数复用
+    * */
+</script>
+<script>
+    /*
+    * 3.组合式继承
+    *   基本上是利用原型链继承实现对原型属性和方法的继承，借用构造函数实现对实例属性的继承
+    * */
+    //超类
+    function SuperType(name) {
+        this.name = name;
+        this.cp = ['宋智孝','gary'];
+    }
+    SuperType.prototype.sayName = function () {
+        console.log(this.name);
+    };
+    //子类
+    function SubType(name, age) {
+        SuperType.call(this, name);
+        this.age = 33;
+    }
+    SubType.prototype = new SuperType();
+    SubType.prototype.constructor = SubType;
+
+    var zh = new SubType('跑男', 7);
+    console.log(zh.cp);
+    zh.sayName();
+    /*
+    * 总结：是Js中最常用的继承方法
+    * */
+</script>
+<script>
+    /*
+    * 4.原型式继承
+    *   在已有对象的基础上继承
+    * */
+
+    function clone(o) {
+        function F() {};
+        F.prototype = o;
+        return new F();
+    }
+    /*
+    * 总结：在o的基础上创建特定的对象，和原型链继承不同的主要点就是没有new操作符
+    * */
+</script>
+<script>
+    /*
+    * 5.寄生式继承
+    *   创建一个用于封装继承过程的函数，该函数以内部以某种方式继承对象，最后返回对象
+    * */
+    function crarteAnother(o) {
+        var clone = clone(o);
+        clone.sayHi = function () {
+            console.log('say Hi');
+        }
+        return clone;
+    }
+    /*
+    * 总结：只考虑是对象{}的形式时，该方法给对象添加函数，和借用构造函数继承一样函数复用率低
+    * */
+</script>
+<script>
+    /*
+    * 6.寄生组合式继承
+    *   本质上是通过寄生式继承来继承超类型的原型，然后再将结果指定给子类型的原型
+    * */
+    function inheritPrototype(SubType, SuperType) {
+        var prototype = clone(SuperType.prototype);     //创建对象， 创建超类型原型的一个副本
+        prototype.constructor = SubType;    //增强对象， 为创建的副本增加constructor属性
+        SubType.prototype = prototype;      //指定对象， 将新创建的对象赋值给子类型的原型
+    }
+    /*
+    * 总结：被普遍认为是最理想的继承方式
+    * */
+</script>

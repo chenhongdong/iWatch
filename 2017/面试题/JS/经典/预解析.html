@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    //1
+    /*var a = 1;
+    function a() {};
+    alert(a);*/
+
+    //2
+    /*(function(a) {
+        console.log(a);
+        var a = 10;
+        function a() {};
+    })(100);*/
+
+    //3
+    /*var a = 100;
+    function fn() {
+        alert(a);
+        var a = 200;
+        alert(a);
+    }
+    fn();
+    alert(a);
+    var a;
+    alert(a);
+    var a = 300;
+    alert(a);           */
+
+    //4
+    var obj1 = {
+        name: 'obj1',
+        fn: function () {
+            console.log(this.name);
+        }
+    };
+    var obj2 = {name: 'obj2'};
+    var obj3 = {name: 'obj3'};
+    obj1.fn();
+    var newFn = obj1.fn;
+    newFn();
+    newFn.call(obj2);
+    obj3.fn = newFn;
+    obj3.fn();
+</script>

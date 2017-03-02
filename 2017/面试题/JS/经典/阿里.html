@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    //1.请说明下面各种情况的执行结果
+    function doSomething() {
+        alert(this);
+    }
+    //element.onclick = doSomething
+    //element.onclick = function() { doSomething(); }
+    //doSomething()
+    /*
+    *  1=> element，直接指向事件元素
+    *  2=> window，this绑定到全局对象
+    *  3=> window，this绑定到全局对象    window.doSomething()
+    * */
+
+    //2.请用js实现sort排序函数，要求sort([5, 100, 6, 3, -12]) //返回[-12, 3, 5, 6, 100]
+    //方法一：快速排序
+    function sort(arr) {
+        if (arr.length == 1) return arr;
+        var iMin = arr[0];
+        var index = 0;
+        var len = arr.length;
+        for (var i = 0; i < len; i++) {
+            if (iMin > arr[i]) {
+                iMin = arr[i];
+                index = i;
+            }
+        }
+
+        var tmp = arr.splice(index, 1);
+
+        return tmp.concat(sort(arr));
+    }
+    console.log(sort([5, 100, 6, 3, -12]));
+    //方法二：冒泡排序
+    function sort2(arr) {
+        var len = arr.length;
+        for (var i = 0; i < len; i++) {
+            for (var j = 0; j < len - i; j++) {
+                if (arr[j] > arr[j + 1]) {
+                    var tmp = '';
+                    tmp = arr[j];
+                    arr[j] = arr[j + 1];
+                    arr[j + 1] = tmp;
+                }
+            }
+        }
+        return arr;
+    }
+    console.log(sort2([5, 100, 6, 3, -12]));
+
+    //3.阅读以下JavaScript代码：
+    /*
+    *  if (window.addEventListener) {
+            var addListener = function(el, type, listener, useCapture) {
+                el.addEventListener(type, listener, useCapture);
+             };
+       } else if (document.all) {
+         addListener = function(el, type, listener) {
+             el.attachEvent("on" + type, function() {
+                 listener.apply(el);
+             });
+         };
+       }
+     请阐述：
+     a) 代码的功能；
+
+     b) 代码的优点和缺点；
+
+     c) listener.apply(el) 在此处的作用；
+
+     d) 如果有可改进之处，请给出改进后的代码，并说明理由。
+    * */
+    /*
+    * 回答：
+    * a) 事件绑定
+    * b) 优点：兼容性好，特性探测，性能优化
+    *    缺点：不应该用document.all来检测，应该用能力检测
+    *         addEventListener不应该在if else里声明，应该提前声明
+    * c) 处理this指向问题，this指向el元素
+    *
+    * d) function addEvent(ele, type, func) {
+    *       if (ele.addEventListener) {
+    *           ele.addEventListener(type, func, false);
+    *       } else if (ele.attachEvent) {
+    *           ele.attachEvent('on'+type, function() {
+    *               func.call(el);  //改变this指向为el
+    *           });
+    *       } else {
+    *           ele['on' + type] = func;
+    *       }
+    *    }
+    * */
+
+    //4.请编写一个函数toRGB,它的作用是转换CSS中常用的颜色编码。要求
+    //alert(toRGB('#ff0000'));  输出rgb(255, 0, 0)
+    //alert(toRGB('invalid'));     输出invalid
+    //alert(toRGB('#G00'));     输出#G00
+
+    //方法一
+    function toRGB(val) {
+        var reg1 = /^#([0-9A-F]{2})([0-9A-F]{2})([0-9A-F]{2})&/i,
+            reg2 = /^#([0-9A-F])([0-9A-F])([0-9A-F])&/i,
+            reg3 = /[0-9A-F]{2}/g,
+            m;
+
+
+        if (reg2.test(val)) {
+            val = val.replace(reg2, '#$1$1$2$2$3$3');
+        }
+        if (reg1.test(val)) {
+            m = val.match(reg3);
+            console.log(m[0]);
+            val = 'rgb(' + [parseInt(m[0], 16), parseInt(m[1], 16), parseInt(m[2], 16)].join(', ') + ')';
+        }
+        return val;
+    }
+//    console.log(toRGB('#ff0000'));
+//    console.log(toRGB('pink'));
+//    console.log(toRGB('#G00'));
+    //方法二
+    function RGB(color) {
+        var hh = '';
+        var kk = [];
+        var reg = /^#(\w{3})&/;     //设置正则匹配
+        if (color == 'invalid') return 'invalid';   //如果无效返回
+        if (reg.test(color)) return color;      //如果是3位数表示，直接返回
+        for (var i = 1; i < color.length; i += 2) {
+            hh = color.substr(i, 2);    //从第i位开始截取两位字符
+            var cc = parseInt(hh, 16);  //转换为16进制
+            kk.push(cc);
+        }
+        return ('rgb(' + kk + ')');
+    }
+    console.log(toRGB('#ff0000'));
+    console.log(toRGB('invalid'));
+    console.log(toRGB('#G00'));
+
+    //5.请编写一个JavaScript函数，它的作用是校验输入的字符串是否是一个有效的电子邮件地址
+    function checkEmail(val) {
+        var reg = /^\w+@[\da-z]+\.[a-z]{2,4}$/;
+        return reg.test(val);
+    }
+    console.log(checkEmail('chenhongdong@damai.cn'))
+    console.log(checkEmail('mrchen1107@163.com'));
+    console.log(checkEmail('513948670@qq.com'))
+
+    //6.请编写一段JavaScript脚本生成下面这段DOM结构。要求：使用标准的DOM方法或属性。
+    /*
+    * <div id=”example”>
+        <p class=”slogan”>淘！你喜欢</p>
+      </div>
+    * */
+
+    var oDiv = document.createElement('div');
+    oDiv.setAttribute('id', 'example');
+    var oP = document.createElement('p');
+    oP.setAttribute('class', 'slogan');
+    var oTxt = document.createTextNode('淘！你喜欢');
+    oP.appendChild(oTxt);
+    oDiv.appendChild(oP);
+    document.body.appendChild(oDiv);
+
+    //7.请给JavaScript的String 原生对象添加一个名为trim 的原型方法，用于截取空白字符。要求：
+    console.log('('+" taobao".trim());     // 输出 "taobao"
+    console.log(" taobao ".trim()+ ')');    // 输出 "taobao"
+
+    String.prototype.trim = function () {
+        return /(^\s+)|(\s+$)/;
+    }
+
+    //8.请编写一个JavaScript函数 parseQueryString，它的用途是把URL参数解析为一个对象，如：
+
+    var url = "http://www.taobao.com/index.php?key0=0&key1=1&key2=2&from=20170217";
+    var obj = parseQueryString(url);
+    console.log(obj.from)  // 输出0
+
+    function parseQueryString(url) {
+        var json = {};
+        var query = url.split('?')[1];
+
+        if (query) {
+           var arr = query.split('&');
+
+            for (var i = 0; i < arr.length; i++) {
+                var res = arr[i].split('=');
+                json[res[0]] = res[1];
+            }
+        }
+        return json;
+    }
+
+    //9.请给Array本地对象增加一个原型方法，它用于删除数组条目中重复的条目(可能有多个)，返回值是一个包含被删除的重复条目的新数组。
+    Array.prototype.distinct = function () {
+        var arr = [];
+        for (var i = 0; i < this.length - 1; i++) {
+            for (var j = i + 1; j < this.length;) {
+                if (this[i] == this[j]) {
+                    arr.push(this.splice(j, 1))
+                } else {
+                    j++;
+                }
+            }
+        }
+        return arr;
+    }
+
+    console.log(['a','b','c','d','b','a','e', 'c'].distinct());
+</script>

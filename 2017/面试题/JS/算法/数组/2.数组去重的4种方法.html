@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+<script>
+    //1临时数组去重
+    function test1(arr) {
+        var result = [];
+        for (var i = 0, len = arr.length; i < len; i++) {
+            if (result.indexOf(arr[i]) == -1) {
+                result.push(arr[i]);
+            }    
+        }
+        return result;
+    }
+
+    var a1 = [1,2,3,4,4,3,2,1,0];
+    console.log(test1(a1));
+
+    //2hash去重，执行效率高
+    function test2(arr) {
+        var json = {};
+        var res = [];
+        //将出现过的通过下标的形式存入到object中，下标的引用要比indexOf快的多，但是内存占用方面会多一些
+        for (var i = 0; i < arr.length; i++) {
+            if (!json[arr[i]]) {
+                json[arr[i]] = 1;
+                res.push(arr[i]);
+            }
+        }
+        return res;
+    }
+    var a2 = [33, 11, 22, null, 'str', 22, 11, 'str', 11, null];
+    console.log(test2(a2));
+</script>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    //3通过indexOf
+    function test3(arr) {
+        var res = [arr[0]];
+        for (var i = 1; i < arr.length; i++) {
+            if (arr.indexOf(arr[i]) == i) res.push(arr[i]);
+        }
+        return res;
+    }
+    var a3 = [5, 1, 1, 3, 1, 4];
+    console.log(test3(a3));
+
+    //4比较相邻的两个值
+    function test4(arr) {
+        arr.sort();
+        var res = [arr[0]];
+
+        for (var i = 1; i < arr.length; i++) {
+            if (arr[i] !== res[res.length - 1]) {
+                res.push(arr[i]);
+            }
+        }
+        return res;
+    }
+    var a4 = [2, 0, 1, 7, 0, 2, 1, 4];
+    console.log(test4(a4));
+
+    //ES6数组去重,可以针对所有相同数据类型，不局限于数字
+    function test5(arr) {
+        return [...new Set(arr)];
+    }
+    var a5 = [1,'a',undefined,null,NaN,1,'a',undefined,null,NaN, 77];
+    console.log(test5(a5));
+</script>
+

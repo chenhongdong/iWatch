@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+<script>
+    if (typeof Array.prototype.indexOf != 'function') {
+        Array.prototype.indexOf = function (target, pos) {
+            var index = -1,
+                pos = pos * 1 || 0,
+                len = this.length;
+
+            for (var i = 0; i < len; i++) {
+                if (i >= pos && this[i] ===target) {
+                    index = i;
+                    break;
+                }
+            }
+            return index;
+        }
+    }
+
+    var arr = [5, 1, 2, 4, 3, 0];
+    alert(arr.indexOf(1, '2'));
+</script>
+</head>
+<body>
+    
+</body>
+</html>
+
+<script>
+    //请填充代码，使mySort()能使传入的参数按照从小到大的顺序显示出来。
+    function mySort() {
+        var tags = new Array();//使用数组作为参数存储容器
+        tags = Array.prototype.slice.call(arguments);
+        tags.sort((a, b) => {
+            return a - b;
+        });
+        return tags;//返回已经排序的数组
+    }
+     
+    var result = mySort(50,11,16,32,24,99,57,100); //传入参数个数不确定
+    console.info(result);//显示结果
+
+    //Array.prototype.slice.call()使用
+    function use(a, b, c, d) {
+        var args = Array.prototype.slice.call(arguments, 1, 2);     //给形参从第1位截取，第3位结束
+        alert(args instanceof Array);    //b
+    }
+
+    use('a', 'b', 'cc', 'DD')
+</script>

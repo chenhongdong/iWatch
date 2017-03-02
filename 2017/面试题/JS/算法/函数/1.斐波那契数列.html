@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+<style>
+    *{margin:0; padding:0;}
+</style>
+<script>
+    function test(n) {
+        if (n<=2) return 1;
+        return test(n-1) + test(n-2);
+    }
+    // 1 1 2 3 5 8 13 21 34 55
+    alert(test(10));    //55
+
+    var str = 'hello';
+    var arr = [1,2,3]
+    alert(arr instanceof Array);
+</script>
+</head>
+<body>
+    <div id="div">111</div>
+</body>
+</html>
+<script>
+    function dodo() {
+        alert(this);
+    }
+
+    var oDiv = document.getElementById('div');
+    oDiv.onclick = dodo;
+
+    oDiv.onclick = function() {
+        dodo();
+    }
+    dodo();
+</script>

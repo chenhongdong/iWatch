@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+</body>
+</html>
+<script>
+    //为什么要深度克隆？    因为在给变量赋值的时候，引用类型的数据会共享一块内存区域，导致数据之间相互影响
+
+    function deep(data) {
+        var type = Object.prototype.toString.call(data),
+           obj = null;
+        if (type == '[object Array]') {
+            obj = [];
+            for (var i = 0; i < data.length; i++) {
+                obj.push(deep(data[i]));
+            }
+            return obj;
+        } else if (type == '[object Object]') {
+            obj = {};
+            for (var i in data) {
+                obj[i] = deep(data[i]);
+            }
+            return obj;
+        } else {
+            return data;
+        }
+    }
+
+</script>
+<script>
+    var schedule = {
+        "status":21,
+        "msg":"ok",
+        "data":[{
+            "name":"lemon",
+            "age":21,
+            "contactList":{
+                "phone":[152,153,154],
+                "email":5295
+            }
+        },
+        {
+            "name":"lara",
+            "age":22,
+            "contact":{
+                "phone":152,
+                "email":5295
+            }
+        }]
+    };
+    //简单粗暴，利用js原生的json序列化
+    var schedule2 = JSON.parse(JSON.stringify(schedule));
+    console.log(schedule2);
+    console.log(schedule2.data[0].age);
+</script>

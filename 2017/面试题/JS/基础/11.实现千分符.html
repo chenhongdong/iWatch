@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        var num = '12389785';
+
+        function qff(num) {
+            var reg = /(?=(?!\b)(\d{3})+$)/g;
+            return num.replace(reg, ',');
+        }
+
+        alert(qff(num))
+    </script>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    function qff2(str) {
+        var reg = /(?=(?!\b)(\d{3})+$)/g;
+        return str.replace(reg, ',');
+    }
+
+    alert(qff2('2901398'))
+</script>

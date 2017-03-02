@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        alert(1&&2);
+        var obj = {
+            a: 1,
+            b: function () {
+                console.log(this.a);
+            }
+        };
+        var a = 2;
+        var objb = obj.b;
+        obj.b();    //1
+        objb();     //2
+        obj.b.call(window); //2
+
+        var c = 1;
+        function d() {
+            var c = 2;
+            function e() {
+                console.log(c);
+            }
+            return e;
+        }
+
+        d()();      //2
+    </script>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    /*
+    * 1.尽量减少HTTP请求
+    *   合并图片如雪碧图，合并js和css
+    * 2.使用CDN内容分发网络
+    * 3.添加Expire/Cache-Control头
+    * 4.启用Gzip压缩
+    * 5.将css放在页面最上面
+    *   避免页面出现空白或闪烁的问题
+    * 6.将js放在最下面
+    *   会先将内容呈现出来，不会让用户看到空白内容
+    * 7.避免在css中使用css表达式
+    *   页面显示和缩放，页面滚动，移动鼠标都会重新计算
+    * 8.把js和css放到外部文件中
+    * 9.减少DNS查询
+    *   利用浏览器缓存机制，减少DNS的重复查找，节省时间
+    * 10.最小化js和css
+    * 11.避免重定向
+    * 12.配置实体标签Etag
+    *   可以使用本地缓存版本，减轻服务器负担
+    * 13.使用ajax缓存
+    *   POST 每次都执行 不可缓存 200
+    *   GET  同一地址不重复执行 可缓存 304
+    *   区别
+    *       GET                         POST
+    *       参数数据添加到Url中，          看不到过程，
+    *       可以在url中看到               放在http主体中
+    *       服务器端用req.QueryString     服务器端用req.form获取
+    *       数据小，小于2k                 数据大
+    *       安全性较低                    安全性较高
+    *       在action页面后带的参数会忽略    不会忽略页面参数
+    * */
+</script>
+
+<script>
+    var name = 'window';
+    var obj = {
+        name: 'obj',
+        getName: function () {
+            var that = this;
+            return function () {
+                return that.name;
+            }
+        }
+    };
+    alert(obj.getName()()); //obj
+</script>
+<script>
+    /*if (window) {
+        var x = 123;
+    }
+    alert(x);   //123*/
+    
+    /*(function () {
+        eval('var test = 5');
+    })();
+    alert(test);    //test is not defined*/
+
+    /*function person(name, age) {};
+    var len = person.length;
+    alert(len);*/
+
+    var a = 'a';
+    (function () {
+        alert(a);
+        var a = 'b';
+        alert(a)
+    })()
+</script>

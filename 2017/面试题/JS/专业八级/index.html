@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    //1
+    var arr1 = ['1', '2', '3'].map(parseInt);
+    console.log(arr1);      //[1, NaN, NaN]
+    //2
+    console.log( [typeof null, null instanceof Object] );   //['object', false]
+    //3
+    console.log( [3, 2, 1].reduce(Math.pow) )   //9
+    //console.log( [].reduce(Math.pow));  //error   reduce如果没有值处理就报错
+    //4
+    var val = 'smtg';
+    console.log('Value is ' + (val === 'smtg') ? 'Something' : 'Nothing');  //Something
+    //5
+    var name = 'World!';
+    (function () {
+        if (typeof name === 'undefined') {
+            var name = 'Jack';
+            console.log('Goodbye' + name);
+        } else {
+            console.log('Hello' + name);
+        }
+    })();
+    //6
+    var end = Math.pow(2, 10);
+    var start = end - 100;
+    var count = 0;
+    for (var i = start ; i <= end; i++) {
+        count++;
+    }
+    console.log(count);     //死循环
+    //7
+    var ary = [0,1,2];
+    ary[10] = 10;
+    var ary2 = ary.filter(function (x) {
+        return x === undefined;
+    });
+    console.log(ary2);      //[]    filter方法不涉及空元素
+    //8
+    var two = 0.2;
+    var one = 0.1;
+    var eight = 0.8;
+    var six = 0.6;
+    console.log( [two - one == one, eight - six == two] );    //true false
+    //9
+    function showCase(value) {
+        switch (value) {
+            case 'A':
+                console.log('Case A');
+                break;
+            case 'B':
+                console.log('Case B');
+                break;
+            case undefined:
+                console.log('undefined');
+                break;
+            default:
+                console.log("Don't Know!");
+        }
+    }
+    showCase(new String('A'));      //new出来的就是个对象了，对象没有符合的所以Don't Know!
+    //10
+    function showCase(value) {
+        switch (value) {
+            case 'A':
+                console.log('Case A');
+                break;
+            case 'B':
+                console.log('Case B');
+                break;
+            case undefined:
+                console.log('undefined');
+                break;
+            default:
+                console.log("Don't Know!");
+        }
+    }
+    showCase(String('A'));  //定义一个字符串A
+    //11
+    function isOdd(num) {
+        return num % 2 == 1;
+    }
+    function isEven(num) {
+        return num % 2 == 0;
+    }
+    function isSane(num) {
+        return isEven(num) || isOdd(num);
+    }
+    var values = [7, 4, '13', -9, Infinity];
+    console.log(values.map(isSane));    //或运算符  左边的如果是假的去看右边的
+    //12
+    console.log(parseInt(3, 8));    
+    console.log(parseInt(3, 2));
+    console.log(parseInt(3, 0));
+    //13
+    console.log( Array.isArray( Array.prototype ) );
+    //14
+    var a = [0];
+    if ([0]) {          //[0]单独作用时是true，但是如果发生比较的话就是false
+        console.log(a == true);
+    } else {
+        console.log('wut');
+    }
+    //15
+    console.log( [] == []);
+    //16
+    console.log( 1 + - + + + - + 1 );
+    //17
+    var a = Array(3);
+    a[0] = 2;
+    var a2 = a.map(function (ele) {
+        return '1';
+    });
+    console.log(a2);    //['1', undefined, undefined]  不涉及没有初始化的
+    //18
+    (function () {
+        var x = y = 1;
+    })();
+//    console.log(x);     //error
+    console.log(y);     //1
+    //19
+    var a = /123/,
+        b = /123/;
+    console.log(a == b, a === b);    //false  每一个正则表达式都相当于new了一个RegExp，new出来的都是不一样的
+    //20
+    var a = [1, 2, 3],
+        b = [1, 2, 3],
+        c = [1, 2, 4];
+    console.log( a == b, a === b, a > c, a < c);
+    //21
+    var o = {}, p = Object.prototype;
+    console.log([o.prototype === p, Object.getPrototypeOf(o) === p]);
+    //22
+    var a = {class: 'Animal', name: 'Fido'};
+    console.log(a.class);       
+    //23
+    var a = new Date("epoch")
+    console.log(a);     //无效的时间
+    //24
+    var min = Math.min(), max = Math.max();
+    console.log(min < max);     //false  min是正无穷   max是负无穷
+    //25
+    function foo() {}
+    var oldName = foo.name;
+    foo.name = 'bar';
+    console.log([oldName, foo.name]);
+</script>

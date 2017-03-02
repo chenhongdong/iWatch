@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>等高布局且三个div都自适应</title>
+    <style>
+        html {
+            font-size: 10px;
+        }
+        body {
+            font-size: 1.4rem;
+        }
+        .table{
+            display: table;
+            width: 100%;
+        }
+        .wrap{
+            display: table-row;     /*防止浏览器创建一个匿名表格元素*/
+        }
+        .box{
+            display: table-cell;
+            width: 30%;
+            padding: 1.6%;
+            background: #00a1f5;
+            vertical-align: middle;
+            text-align: center;
+        }
+        .box:nth-child(2) {
+            height: 6rem;
+            background: #00cc99;
+        }
+    </style>
+</head>
+<body>
+<div class="table">
+    <div class="wrap">
+        <div class="box">
+            <p>这是第一块</p>
+        </div>
+        <div class="box">
+            <p>这是第二块</p>
+        </div>
+        <div class="box">
+            <p>这是第三块</p>
+        </div>
+    </div>
+</div>
+</body>
+</html>

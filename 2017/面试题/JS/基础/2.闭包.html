@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p>111</p>
+<p>222</p>
+<p>333</p>
+<p>4444</p>
+</body>
+</html>
+<script>
+    //闭包
+
+    //输出结果是？
+    var aP = document.getElementsByTagName('p');
+    var len = aP.length;
+
+    for (var i = 0; i < len; i++) {
+
+        //1
+        aP[i].onclick = (function (i) {
+            return function () {
+                alert(i);
+            }
+        })(i);
+        //2
+        /*(function (i) {
+            aP[i].onclick = function () {
+                alert(i);
+            }
+        })(i);*/
+    }
+
+
+    //闭包的作用
+    /*
+    *   1.通过闭包可以把局部变量传递出来，就是通过闭包可以访问函数内部的变量
+    *
+    *   2.可以避免全局变量造成的污染，闭包内部的变量只能在内部使用
+    * */
+    function count() {
+        var num = 1;
+        return function () {
+            return num++;
+        }
+    }
+
+    var c = count();
+    c();    //1
+    c();    //2
+    c();    //3
+    c();    //4
+</script>

@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+<style type="text/css">
+    .left{float: left;width:100px;height:100px;background: pink;}
+    .right{float: right;width:200px;height:150px;background:#00a1f5;}
+    .center{height:150px;background:#0c9;margin-left:100px;margin-right:150px;}
+</style>
+</head>
+<body>
+<div id="page">
+    <div class="left"></div>
+    <div class="right"></div>
+    <div class="center"></div>
+</div>
+</body>
+</html>
+<script>
+    function addEvent(obj, ev, fn) {
+        if (obj.addEventListener) {
+            obj.addEventListener(ev, fn, false);
+        } else {
+            obj.attachEvent('on'+ev, function(){
+               fn.call(obj); 
+            });
+        }
+    }
+
+    var oDiv = document.getElementById('page');
+
+    addEvent(oDiv, 'click', function(){
+        alert('哇咔咔')
+    })
+</script>

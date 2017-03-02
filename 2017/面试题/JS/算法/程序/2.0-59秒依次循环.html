@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div id="demo"></div>
+    <input type="tel">
+    <input type="number">
+</body>
+</html>
+<script>
+    var oDiv = document.querySelector('#demo');
+    var n = 0;
+
+    function time() {
+        n %= 60;
+        ++n;
+        oDiv.innerHTML = n + '秒';
+    }
+    time();
+
+    setInterval(time, 1000);
+</script>

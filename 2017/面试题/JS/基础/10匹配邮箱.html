@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    //mrchen1108@163.com
+    function test(email) {
+        var reg = /^\w+@[a-z0-9]+\.[a-z]{2,4}$/;
+        if (reg.test(email)) {
+            alert('邮箱格式正确')
+        }
+    }
+
+    test('mrchen1108@163.cm')
+    
+    function money(num) {
+        var reg = /(?=(?!\b)(\d{3})+$)/g;
+        num = num.replace(reg, ',');
+        return num;
+    }
+
+    alert(money('1348881'))
+</script>

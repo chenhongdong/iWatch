@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>继承的使用</title>
+    <script>
+        //继承
+        function inherit(p) {
+            if (Object.create) {
+                return Object.create(p);
+            }
+            var t = typeof p;
+            if (t !== 'object' && t !== 'function') throw TypeError();
+            function f() {};
+            f.prototype = p;
+            return new f();
+        }
+
+        var o = {x: 9};
+        o.x = 1;
+        var p = inherit(o);
+        p.y = 2;
+        var q = inherit(p);
+        q.z = 3;
+        alert(q.x + q.y);   //3  x,y分别继承自o和p
+    </script>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    //继承的使用
+    //组合继承法
+    function Super(name) {
+        this.name = name;
+        this.arr = [1, 2, 3];
+    }
+
+    Super.prototype.say = function () {
+        alert(this.name);
+    };
+
+    //子类继承
+    function Sub(name, age) {
+        Super.apply(this, arguments);
+        this.age = age;
+    }
+
+    Sub.prototype = new Super();
+    Sub.prototype.constructor = Sub;
+
+    Sub.prototype.sayAge = function () {
+        alert(this.age);
+    };
+
+    var child = new Sub('林青霞', 60);
+    child.arr.push('黑客');
+    child.say();
+    child.sayAge();
+    alert(child.arr);
+</script>

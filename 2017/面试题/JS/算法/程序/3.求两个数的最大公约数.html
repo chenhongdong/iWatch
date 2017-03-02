@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    //从两个数中取最小的一个开始，每次减1，如果减少1后还能被2整除，当前就是最大公约数
+    function f(n1, n2) {
+        for (var i = Math.min(n1, n2); i > 0; i--) {
+            if (n1%i == 0 && n2%i == 0) {
+                return i;
+            }
+        }
+    }
+
+    alert(f(36,6))
+</script>

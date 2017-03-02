@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        Array.prototype.binarySearch = function (item) {
+            var low = 0;
+            var high = this.length - 1;
+            var mid, index;
+
+            while (low <= high) {
+                mid = Math.floor((low + high) /2);
+                index = this[mid];
+                if (item < index) {
+                    high = mid - 1;
+                } else if (item > index) {
+                    low = mid + 1;
+                }
+            }
+            return -1;
+        }
+    </script>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+function binarySearch(arr, n) {
+    var low = 0;
+    var high = arr.length - 1;
+    var mid, index;
+
+    while (low <= high) {
+        mid = Math.floor((low + high)/2);
+        index = arr[mid];
+        console.log(index);
+        if (n < index) {
+            high = mid - 1;
+        } else if (n > index) {
+            low = mid + 1;
+        } else {
+            return mid;
+        }
+    }
+    return -1;
+}
+
+console.log(binarySearch([8,7,6,5,4,3,2,1], 8));
+</script>
+<script>
+    Array.prototype.binarySearch = function (n) {
+        var low = 0,
+            high = this.length - 1,
+            mid,
+            index;
+
+        while (low <= high) {
+            mid = Math.floor((low + high) / 2);
+            index = this[mid];
+            if (n < index) {
+                high = mid - 1;
+            } else if (n > index) {
+                low = mid + 1;
+            } else {
+                return mid;
+            }
+        }
+        return -1;
+    };
+</script>

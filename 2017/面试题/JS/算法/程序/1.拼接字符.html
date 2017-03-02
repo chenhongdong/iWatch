@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <input type="checkbox" disabled>
+</body>
+</html>
+<script>
+    //变成Tencent1 is2 perfect3
+    
+    function test() {
+        var str = 'Tencent is perfect';
+        var arr = str.split(' ');
+        str = '';
+        for (var i = 0, len = arr.length; i < len; i++) {
+            str += arr[i] + (i + 1) + ' ';
+        }
+        return str;
+    }
+
+    alert(test());
+    prompt();
+    confirm();  
+
+</script>
