@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    function Person(name) {
+        this.name = name;
+        var age = 18;
+        var job = 'CEO';
+    }
+    Person.prototype.girlfriend = 'Jolin Lv';
+
+
+    var o = new Person('Mr.陈');
+    o.big = '社交网络';
+    
+    for (var i in o) {
+        if (o.hasOwnProperty(i)) {
+            console.log('私有属性的有' + i);
+        }
+    }
+</script>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        /*
+        * JS中的跨域
+        *
+        * www.a.com
+        * www.b.com
+        * 方法
+        *   1.document.domain = 'a.com';
+        *   2.服务器代理: XMLHttpRequest()代理文件
+        *   3.jsonp
+        *   https://www.baidu.com/s?wd=qq
+        *
+        *   http://suggestion.baidu.com/su?wd=sina
+        *   缺点:单域操作,get请求,不能修改请求的内容
+        *   4.location.hash
+        *       <iframe src="xxx.php#key=value&key2=value2"></iframe>
+        *   5.window.name
+        *       www.a.com/c1.html
+        *       www.a.com/代理.html
+        *       www.b.com/c2.html : window.name = '数据';
+        *   6.flash
+        *   7.html5 postMessage
+        * */
+    </script>
+</head>
+<body>
+
+</body>
+</html>

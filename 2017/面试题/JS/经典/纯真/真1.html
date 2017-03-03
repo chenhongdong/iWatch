@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    //5.JS的严格模式是什么?有什么优点?
+    /*
+    *   使用"use strict";实现严格模式
+    *   ES5中的一种将更好的错误检查引入代码中的方法
+    *
+    *   优点: 可以提早知道代码中存在的错误,及时捕获一些可能导致编程错误的ES行为
+    *         让js代码更合理,更安全,更严谨的发展方向
+    * */
+
+    //6.jsonp原理是什么?如何实现?请用伪代码表示写出来
+
+
+    //7.写出下面代码的返回值:
+    var a = {a: 1},
+        b = {a: 1},
+        c = a;
+    console.log(a==b);  //f
+    console.log(a===b); //f
+    console.log(a==c);  //t
+    console.log(a===c); //t
+
+
+
+    //8.(function ($, undefined){ })(jQuery)中,传入undefined的作用是?
+    /*
+    *   1.因为undefined是window的属性,传入后如果再有变量与undefined比较时方便找到,提高性能
+    *   2.为了兼容低版本浏览器不报错,增加一个形参undefined
+    * */
+</script>
