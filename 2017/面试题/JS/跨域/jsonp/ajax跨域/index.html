@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <form>
+        <div class="form-group">
+            <label for="name">名称</label>
+            <input type="text" id="name" name="name" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="id">ID</label>
+            <input type="text" id="id" name="id" class="form-control">
+        </div>
+        <input type="button" id="submit" value="提交" class="btn btn-primary">
+    </form>
+</div>
+</body>
+</html>
+<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+
+<script>
+$(function () {
+    function jsonpCallback(data) {
+        console.log('回调拿到的数据:' + data.name);
+    }
+
+   $('#submit').click(function () {
+       var data = {
+           name: $('#name').val(),
+           id: $('#id').val()
+       };
+
+       $.ajax({
+           url: 'http://localhost:3001/jsonp',
+           data: data,
+           dataType: 'jsonp',
+           cache: false,
+           timeout: 5000,
+           //jsonp 字段定义服务器以什么字段获取回调的名称
+           jsonp: 'cb',
+           //声明本地回调函数的名字,jq默认随机生成
+           jsonpCallback: 'jsonpCallback',
+           success: function (data) {
+               console.log(data);
+           },
+           error: function () {
+               console.log('错误');
+           }
+       });
+
+   })
+});
+</script>

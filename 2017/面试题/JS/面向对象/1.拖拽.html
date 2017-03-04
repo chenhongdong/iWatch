@@ -56,17 +56,52 @@
     }*/
 
     //面向对象
-    var d1 = new Drag('div1');
-    d1.init();
+    window.onload = function () {
+        var d1 = new Drag('div1');
+        d1.init();
+    }
+
 
     //拖拽构造函数
     function Drag(id) {
         this.oDiv = document.getElementById(id);
         this.disX = 0;
         this.disY = 0;
+
     }
 
-    ;(function ($, undefined) {
+    Drag.prototype.init = function () {
+        var This = this;
+        this.oDiv.onmousedown = function (ev) {
+            var ev = ev || event;
 
-    })(jQuery)
+            This.fnDown(ev);
+
+            document.onmousemove = function (ev) {
+                var ev = ev || event;
+                This.fnMove(ev);
+            };
+
+            document.onmouseup = this.fnUp;
+
+            return false;
+        };
+    };
+
+    Drag.prototype.fnDown = function (ev) {
+        this.disX = ev.clientX - this.oDiv.offsetLeft;
+        this.disY = ev.clientY - this.oDiv.offsetTop;
+    };
+
+    Drag.prototype.fnMove = function (ev) {
+        var l = ev.clientX - this.disX;
+        var t = ev.clientY - this.disY;
+
+        this.oDiv.style.left = l + 'px';
+        this.oDiv.style.top = t + 'px';
+    };
+
+    Drag.prototype.fnUp = function () {
+        document.onmousemove = document.onmouseup = null;
+    };
 </script>

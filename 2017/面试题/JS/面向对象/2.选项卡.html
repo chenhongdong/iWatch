@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{margin:0; padding:0;}
+        ul{list-style: none;}
+        .wrap{width:300px; margin:100px auto;border:1px solid #0c9;}
+        .wrap ul{display: flex;border-bottom:1px solid #0c9;}
+        .wrap li{width: 100px;text-align: center}
+        .wrap .on{background: #00a1f5;}
+        .box div{display: none;padding:30px 0;}
+        .box .show{display: block;}
+    </style>
+    <script>
+        //改this指向问题: 事件或者定时器,尽量让面向对象中的this指向对象
+    window.onload = function () {
+        var t1 = new Tab('demo1');
+        t1.init();
+
+        var t2 = new Tab('demo2');
+        t2.init();
+        t2.autoPlay();
+    };
+
+    function Tab(id) {
+        this.oBox = document.getElementById(id);
+        this.aLi = this.oBox.getElementsByTagName('li');
+        this.aDiv = this.oBox.querySelectorAll('.box div');
+        this.num = 0;
+    }
+
+    Tab.prototype.init = function () {
+        var self = this;
+        for (var i = 0; i < this.aLi.length; i++) {
+            this.aLi[i].index = i;
+            this.aLi[i].onclick = function () {
+                self.num = this.index;
+                self.change(this);
+            };
+        }
+    };
+
+    Tab.prototype.change = function (obj) {
+        for (var i = 0; i < this.aLi.length; i++) {
+            this.aLi[i].className = '';
+            this.aDiv[i].className = '';
+        }
+        obj.className = 'on';
+        this.aDiv[obj.index].className = 'show';
+    };
+
+    Tab.prototype.autoPlay = function () {
+        var self = this;
+
+        setInterval(function () {
+            self.num++;
+            self.num %= self.aLi.length;
+
+            for (var i = 0; i < self.aLi.length; i++) {
+                self.aLi[i].className = '';
+                self.aDiv[i].className = '';
+            }
+            self.aLi[self.num].className = 'on';
+            self.aDiv[self.num].className = 'show';
+        }, 2000);
+    };
+    </script>
+</head>
+<body>
+<div class="wrap" id="demo1">
+    <ul>
+        <li class="on">新闻</li>
+        <li>体育</li>
+        <li>娱乐</li>
+    </ul>
+    <div class="box">
+        <div class="show">新闻内容</div>
+        <div>体育内容</div>
+        <div>娱乐内容</div>
+    </div>
+</div>
+<div class="wrap" id="demo2">
+    <ul>
+        <li class="on">新闻</li>
+        <li>体育</li>
+        <li>娱乐</li>
+    </ul>
+    <div class="box">
+        <div class="show">新闻内容</div>
+        <div>体育内容</div>
+        <div>娱乐内容</div>
+    </div>
+</div>
+</body>
+</html>
+<script>
+    //普通方法
+    /*var aLi = document.querySelectorAll('li');
+    var aDiv = document.querySelectorAll('.box div');
+    var len = aLi.length;
+
+    for (var i = 0; i < len; i++) {
+        aLi[i].index = i;
+        aLi[i].onclick = function () {
+            for (var i = 0; i < len; i++) {
+                aLi[i].className = '';
+                aDiv[i].className = '';
+            }
+            this.className = 'on';
+            aDiv[this.index].className = 'show';
+        }
+    }*/
+</script>
+<!--<script>-->
+    <!--var t1 = new Tab('demo1');-->
+    <!--t1.init();-->
+
+    <!--//面向对象-->
+    <!--function Tab(id) {-->
+        <!--this.oBox = document.getElementById(id);-->
+        <!--this.aLi = null;-->
+        <!--this.aDiv = null;-->
+
+        <!--this.init();-->
+    <!--}-->
+
+    <!--Tab.prototype.init = function () {-->
+        <!--this.aLi = this.oBox.querySelectorAll('li');-->
+        <!--this.aDiv = this.oBox.querySelectorAll('.box div');-->
+        <!--var len = this.aLi.length;-->
+        <!--var self = this;-->
+
+        <!--for (var i = 0 ; i < len; i++) {-->
+            <!--this.aLi[i].index = i;-->
+            <!--this.aLi[i].onclick = function () {-->
+                <!--self.fnTab();-->
+            <!--};-->
+        <!--}-->
+    <!--};-->
+
+    <!--Tab.prototype.fnTab = function () {-->
+        <!--this.clear();-->
+        <!--this.aLi[].className = 'on';-->
+
+    <!--};-->
+
+    <!--Tab.prototype.clear = function () {-->
+        <!--var len = this.aLi.length;-->
+        <!--for (var i = 0; i < len; i++) {-->
+            <!--this.aLi[i].className = '';-->
+            <!--this.aDiv[i].className = '';-->
+        <!--}-->
+    <!--}-->
+<!--</script>-->
