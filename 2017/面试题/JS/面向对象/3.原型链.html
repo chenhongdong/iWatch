@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Title</title>
+<script>
+    //原型链: 实例对象与原型之间的连接
+    //原型链的最外层: Object.prototype
+    function A() {
+//        this.num = 22;
+    }
+//    A.prototype.num = 10;
+    Object.prototype.num = 100;
+
+    var a = new A();
+    console.log(a.num);
+</script>
+</head>
+<body>
+
+</body>
+</html>

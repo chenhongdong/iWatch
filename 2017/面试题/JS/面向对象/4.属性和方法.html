@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    //hasOwnProperty:   看是不是对象自身下的属性
+
+    var arr = [];
+    arr.num = 10;
+    Array.prototype.num2 = 20;
+
+    //alert(arr.hasOwnProperty('num'));   //仅仅是arr独有的属性   true
+    //alert(arr.hasOwnProperty('num2'));  //所有数组都有num2属性  false
+
+
+    //constructor:  查看对象的构造函数
+    function A() {}
+    var a = new A();
+    //A.prototype.constructor = A;    //每一个构造函数都会自动生成的
+    //A.prototype.constructor = Array;    //可以修改构造函数的constructor
+    //alert(a.constructor);   //A()
+
+    var arr = [];
+    //alert(arr.constructor); //Array()
+
+
+
+    function B() {}
+//    B.prototype.name = '小明';
+//    B.prototype.age = 20;
+
+    //此种形式属于给原型直接赋值,构造函数找到的是json所对应的constructor,就是Object
+    //这种简写方式需要手动修正constructor
+    /*B.prototype = {
+        constructor: B,
+        name: '小强',
+        age: 18
+    };
+
+    var b = new B();
+
+    alert(b.constructor);   //B()*/
+
+
+
+    //instanceof: 运算符   对象与构造函数在原型链上是否有关系
+    function C() {
+        
+    }
+    var c = new C();
+    alert(c instanceof C);      //true
+    alert(c instanceof Array);  //false
+    alert(c instanceof Object);  //true
+</script>
