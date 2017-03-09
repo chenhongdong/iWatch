@@ -46,12 +46,28 @@
     var arr = [];
 
     for (var i in json) {
-        arr.push({x: i, y: json[i]});
+        arr.push({x: i, y: json[i].price});
     }
 
     arr.sort(function (a, b) {
-        return a.y.price - b.y.price;
+        return a.y - b.y;
     });
     
     console.log(arr);
+
+    //以下代码输出结果
+    var name = 'John Doe';
+    var obj = {
+        name: 'Colin Fox',
+        prop: {
+            name: 'Aurelo Rosa',
+            getName: function () {
+                return this.name;
+            }
+        }
+    };
+
+    console.log(obj.prop.getName());
+    var tt = obj.prop.getName;
+    console.log(tt());
 </script>
