@@ -70,4 +70,13 @@
     console.log(obj.prop.getName());
     var tt = obj.prop.getName;
     console.log(tt());
+
+    //call和apply的区别,并写出下面的结果
+    function add(a, b) {
+        console.log(a + b);
+    }
+    function sub(a, b) {
+        console.log(a - b);
+    }
+    add.call(sub, 3, 1);
 </script>

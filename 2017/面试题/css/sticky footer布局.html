@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+<title>Title</title>
+<style>
+*{margin:0;padding:0;}
+.box{position:fixed;overflow:auto;left:0;top:0;z-index:0;width:100%;height:100%;background:rgba(0,0,0,0.5);}
+.wrapper{width:100%;min-height:100%;}
+.main{padding-bottom:64px;}
+.close{position:relative;font-size:32px;margin-top:-64px;text-align: center}
+</style>
+</head>
+<body>
+<!--css sticky footer-->
+<!--主要实现的是内容区域wrapper层写min-height:100%;main层用padding-bottom:64px;-->
+<!--最下面按钮设置为margin-top:-64px;-->
+<div class="box">
+    <div class="wrapper">
+        <div class="main"></div>
+    </div>
+    <div class="close">X</div>
+</div>
+</body>
+</html>
