@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        var num = '513948670';
+        function qff(num) {
+            var reg = /(?=(?!\b)(\d{3})+$)/g;
+            return num.replace(reg, ',');
+        }
+        alert(qff(num))
+    </script>
+</head>
+<body>
+
+</body>
+</html>

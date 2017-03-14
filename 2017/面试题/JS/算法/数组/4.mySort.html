@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    //编写一个函数实现传入的参数从小到大排序
+    function mySort() {
+        var arr = [];
+        arr = Array.prototype.slice.call(arguments);
+        arr.sort(function (a, b) {
+            return a - b;
+        });
+        return arr;
+    }
+
+    alert(mySort(1,9,8,91,10,7));
+</script>

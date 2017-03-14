@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    function deepClone(data) {
+        var type = Object.prototype.toString.call(data),
+            o;
+        if (type === '[object Array]') {
+            o = [];
+            for (var i = 0; i < data.length; i++) {
+                o.push(deepClone(data[i]));
+            }
+            return o;
+        } else if (type === '[object Object]') {
+            o = {};
+            for (var i in data) {
+                o[i] = deepClone(data[i]);
+            }
+            return o;
+        } else {
+            return data;
+        }
+    }
+
+    var a = 'love'
+
+    var b = deepClone(a);
+    console.log(b);
+</script>

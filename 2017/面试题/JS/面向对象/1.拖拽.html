@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{margin: 0; padding: 0;}
+        #div1{position: absolute; left: 0; top: 0;width: 100px; height: 100px; background: #0c9;}
+    </style>
+</head>
+<body>
+<div id="div1"></div>
+</body>
+</html>
+<script>
+    /*
+    * 先写出普通的写法,然后改成面向对象的写法
+    *
+    *   面向对象:
+    *       全局变量就是属性
+    *       函数就是方法
+    *       onload中创建对象
+    *       改this指向问题
+    * */
+    //普通
+    /*oDiv.onmousedown = function (ev) {
+        var ev = ev || event;
+        disX = ev.clientX - this.offsetLeft;
+        disY = ev.clientY - this.offsetTop;
+
+        document.onmousemove = function (ev) {
+            var ev = ev || event;
+
+            l = ev.clientX - disX;
+            t = ev.clientY - disY;
+
+            if (l > document.documentElement.clientWidth - oDiv.offsetWidth) {
+                l = document.documentElement.clientWidth - oDiv.offsetWidth;
+            } else if (l < 0) {
+                l = 0;
+            }
+
+            if (t > document.documentElement.clientHeight - oDiv.offsetHeight) {
+                t = document.documentElement.clientHeight - oDiv.offsetHeight;
+            } else if (t < 0) {
+                t = 0;
+            }
+
+            oDiv.style.left = l+ 'px';
+            oDiv.style.top = t + 'px';
+        };
+
+        document.onmouseup = function () {
+            document.onmousemove = document.onmouseup = null;
+        };
+    }*/
+
+    //面向对象
+    window.onload = function () {
+        var d1 = new Drag('div1');
+        d1.init();
+    }
+
+
+    //拖拽构造函数
+    function Drag(id) {
+        this.oDiv = document.getElementById(id);
+        this.disX = 0;
+        this.disY = 0;
+
+    }
+
+    Drag.prototype.init = function () {
+        var This = this;
+        this.oDiv.onmousedown = function (ev) {
+            var ev = ev || event;
+
+            This.fnDown(ev);
+
+            document.onmousemove = function (ev) {
+                var ev = ev || event;
+                This.fnMove(ev);
+            };
+
+            document.onmouseup = This.fnUp;
+
+            return false;
+        };
+    };
+
+    Drag.prototype.fnDown = function (ev) {
+        this.disX = ev.clientX - this.oDiv.offsetLeft;
+        this.disY = ev.clientY - this.oDiv.offsetTop;
+    };
+
+    Drag.prototype.fnMove = function (ev) {
+        var l = ev.clientX - this.disX;
+        var t = ev.clientY - this.disY;
+
+        this.oDiv.style.left = l + 'px';
+        this.oDiv.style.top = t + 'px';
+    };
+
+    Drag.prototype.fnUp = function () {
+        document.onmousemove = null;
+        document.onmouseup = null;
+    };
+</script>
+<script>
+    function printing() {
+        console.log(1);
+        setTimeout(function () {
+            console.log(2);
+        }, 1000);
+        setTimeout(function () {
+            console.log(3);
+        }, 0);
+        console.log(4);
+    }
+    printing();
+</script>

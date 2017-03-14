@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{margin: 0; padding: 0}
+        #demo{position: absolute; top: 500px; left: 100px; width: 100px; height: 200px; border: 1px solid #0c9; padding: 5px; box-sizing: border-box;}
+    </style>
+</head>
+<body>
+<div id="demo"></div>
+</body>
+</html>
+<script>
+    var a = 1;
+    function a() {
+        
+    }
+    alert(a);
+</script>
+<script>
+    var oDiv = document.getElementById('demo');
+    console.log(getPos(oDiv).top);
+    
+    function getPos(o) {
+        var pos = {
+            left: 0,
+            top: 0
+        };
+
+        while (o) {
+            pos.left += o.offsetLeft;
+            pos.top += o.offsetTop;
+            o = o.offsetParent;
+        }
+        return pos;
+    }
+</script>
