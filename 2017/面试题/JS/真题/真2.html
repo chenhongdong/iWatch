@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>国美金融</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    //1.position的默认属性是
+    //A. relative B.absolute C.fixed D.static
+
+    //2.
+    var a = 1;
+    function fn() {
+        console.log(a);     //
+        var a = 2;
+    }
+    fn();
+
+    //3.css选择器中,以下排序正确的为
+    /*
+    * A.行内样式 > id > class > 标签
+    * B.行内样式 > class > id > 标签
+    * C.id > class > 行内样式 > 标签
+    * */
+    
+    //4.请选择结果为真的表达式
+    /*
+    * A.null instanceof Object
+    * B.null === undefined
+    * C.null == (undefined?null:undefined)
+    * D. NaN == NaN
+    * */
+    
+    //5.
+    var k = 0;
+    for (var i = 0, j = 0; i < 8, j < 5; i++, j++) {
+        k = i + j;
+    }
+    console.log(k);
+
+    //6
+    var foo = {
+        bar: function () {
+            return this.baz;
+        },
+        baz: 1
+    };
+    var bar = 'asdf';
+    window.bar = [1, 2, 3];
+    var c = typeof (function () {
+        this.a = foo;
+        return this;
+    })().a.bar();
+    var d = typeof (f = foo.bar)();
+    console.log(c);
+    console.log(d);
+    
+    //7.
+    function Foo() {
+        getName = function () {
+            console.log(1);
+        };
+        return this;
+    }
+    Foo.getName = function () {
+        console.log(2);
+    };
+    Foo.prototype.getName = function () {
+        console.log('baidu' && 'google');
+    };
+    var getName = function () {
+        console.log(4);
+    };
+    
+    function getName() {
+        console.log(5 + 1);
+    }
+    //请写出以下输出结果
+    Foo.getName();
+    getName();
+    Foo().getName();
+    getName();
+    new Foo().getName();
+    new new Foo().getName();
+    
+    //8
+    console.log((function () {
+        console.log(1);
+        setTimeout(function () {
+            console.log(2);
+        }, 1000);
+        setTimeout(function () {
+            console.log(3);
+        }, 0);
+        setTimeout(function () {
+            console.log(5);
+        }, 0);
+        console.log(4);
+    })());
+
+    //9.js的基本数据类型有哪些
+    /*
+    * A.number B.string C.object D.array E.null F.undefined G.boolean
+    * */
+</script>
