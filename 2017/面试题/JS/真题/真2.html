@@ -5,9 +5,8 @@
     <title>国美金融</title>
 </head>
 <body>
-
-</body>
-</html>
+<div id="result"></div>
+<p>122
 <script>
     //1.position的默认属性是
     //A. relative B.absolute C.fixed D.static
@@ -88,7 +87,7 @@
     new new Foo().getName();
     
     //8
-    console.log((function () {
+    /*console.log((function () {
         console.log(1);
         setTimeout(function () {
             console.log(2);
@@ -100,10 +99,95 @@
             console.log(5);
         }, 0);
         console.log(4);
-    })());
+    })());*/
 
     //9.js的基本数据类型有哪些
     /*
     * A.number B.string C.object D.array E.null F.undefined G.boolean
     * */
+
+    //10.以下localStorage的使用方式,哪些是正确的?
+    /*
+    * A.localStorage.setItem('lastname', 'Smith');
+    * B.document.getElementById('result').innerHTML = localStorage.getItem('lastname');
+    * C.localStorage.firstname = 'JR';
+    * D.document.getElementById('result').innerHTML = localStorage.firstname;
+    * E.localStorage.removeItem('firstname');
+    * */
+    
+    //11.以下关于Array数组对象的说法不正确的是
+    /*
+    * A.对数组里数据的排序可以用sort函数,如果排序效果非预期,可以给sort函数加一个排序函数的参数
+    * B.reverse用于对数组数据的倒序排列
+    * C.向数组的最后位置加一个新元素,可以用pop方法
+    * D.unshift方法用于向数组删除第一个元素
+    * */
+    
+    //12.
+    for (var i = 1; i <= 3; i++) {
+        setTimeout(function () {
+            console.log(i);
+        }, 0);
+    }
+
+    //13
+    if (!String.prototype.trim) {
+        String.prototype.trim = function () {
+            return this.replace(/^\s+/, '').replace(/\s+$/, '');
+        }
+    }
+    var str = ' \t\n test string '.trim();
+    console.log(str == 'test string');
+
+    //14.js中的NaN * 3的值是?
+    //A.NaN B.undefined C.3 D.null
+
+    //15.声明一个对象,给它加上name属性和show方法显示其name值,以下代码中正确的是?
+    /*
+    * A. var obj = [name: 'zhangsan', show: function() {alert(name);}]
+    * B. var obj = {
+     *      name: 'zhangsan',
+     *      show: 'alert(this.name)'
+     *   };
+     *C. var obj = {
+            name: 'zhangsan',
+            show: function() {
+                alert(name);
+            }
+         }
+      D. var obj = {
+         name: 'zhangsan',
+         show: function() {
+         alert(this.name);
+         }
+       }
+     * */
+
+    //16下列标签可以不成对出现的是
+    /*
+    * A.<HTML></HTML>
+    * B.<P></p>
+    * C.<TITLE></TITLE>
+    * D.<BODY></BODY>
+    * */
+
+    //17.在js中,以下哪个变量名是非法的
+    //A.Name B.9name C.Name_a D.Name9
+
+    //18.css样式表根据所在网页的位置,可分为
+    /*
+    * A.行内样式表、内嵌样式表、混合样式表
+    * B.行内样式表、内嵌样式表、外部样式表
+    * C.外部样式表、内嵌样式表、导入样式表
+    * D.外部样式表、混合样式表、导入样式表
+    * */
+
+    //19
+    var q = 100;
+    function test() {
+        console.log(q);
+        var q = 10;
+        console.log(q);
+    }
+    test();
 </script>
