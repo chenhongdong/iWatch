@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{margin:0; padding:0;}
+        #left1{margin-right:200px;background: #00a1f5}
+        #right1{width:200px;position:absolute;right:0;top:0;background: #c94a4a}
+    </style>
+</head>
+<body>
+<div id="box1">
+    <div id="left1">左侧自适应</div>
+    <div id="right1">右边固定</div>
+</div>
+<div>
+    <input type="button" id="button1" value="1" onclick="change()">
+    <input type="button" id="button2" value="2">
+</div>
+<h1 id="time">Hello World</h1>
+</body>
+</html>
+<script>
+    //1.js中如何检测一个变量是String?请写出函数实现
+    function isString(str) {
+        return typeof str === 'string';
+    }
+    console.log(isString('121'));
+
+    //2.补充代码,是鼠标单击后Button1到Button2的后面
+    function change() {
+        //补充代码
+        var oDiv = document.getElementsByTagName('div')[0];
+        var oBtn1 = document.getElementById('button1');
+        var oBtn2 = document.getElementById('button2');
+        oDiv.insertBefore(oBtn2, oBtn1);
+    }
+
+    //3.js主要数据类型?
+    //基本类型:数字Number,字符串String,布尔Boolean,null,undefined
+    //引用类型:对象Object
+
+    //4.img的alt和title的异同?
+    //alt是图片没有加载出来时对图片的说明,title是图片的标题内容
+
+    //4.请写出css,布局要求:两列,左边自适应,右边宽度固定200px
+
+    //5.动态打印时间,格式为yyyy-MM-dd hh:mm:ss,并且每秒刷新一次
+    //填充代码
+    var oH = document.getElementById('time');
+    var str = '';
+    function time() {
+        var d = new Date();
+        var year = d.getFullYear();
+        var month = d.getMonth() + 1;
+        var day = d.getDate();
+        var hour = d.getHours();
+        var minutes = d.getMinutes();
+        var second = d.getSeconds();
+
+        str = year + '-' + month + '-' + day + ' ' + addZero(hour) + ':' + addZero(minutes) + ':' + addZero(second);
+
+        oH.innerHTML = str;
+
+    }
+
+    function addZero(n) {
+        return n < 10 ? '0' + n : '' + n;
+    }
+
+    time();
+    setInterval(time, 1000);
+
+    //6.下面代码的结果是
+    var name = 'The Window';
+    var object = {
+        name: 'My Object',
+        getNameFunc: function(){
+            var that = this;
+            return function () {
+                return that.name;
+            }
+        }
+    };
+    console.log(object.getNameFunc()());
+
+    //7.字符串反转,js如将'123456789'变成'987654321'
+    var s = '123456789';
+    s = s.split('').reverse().join('');
+    alert(s);
+
+    //8.js将数字12345678转换成RMB形式如: 12,345,678
+    var num = '12345678';
+    function qianfenfu(num) {
+        return num.replace(/(?=(?!\b)(\d{3})+$)/g, ',');
+    }
+    alert(qianfenfu(num))
+</script>
