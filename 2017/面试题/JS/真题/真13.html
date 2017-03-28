@@ -77,4 +77,25 @@
         $scope.msg = data;
     }]);
 
+
+
+    //8.给Array本地对象增加一个原型方法，它用于删除数组条目中重复的条目（可能有多个），返回值是一个包含被删除的重复条目的新数组
+    Array.prototype.distinct=function(){
+        var that=this;
+        var arr=[];
+        for(var i=1;i<that.length;i++){
+            for(var j=i+1;j<that.length;j++){
+                var num = 0;
+                if(that[i]==that[j]){
+                    if (num==0) {
+                        arr.push(that.splice(j, 1)[0]);
+                    }
+                    num++;
+                }
+            }
+        }
+        return arr;
+    }
+    console.log([1,2,2,3,3,5,7,9,0,9,0,11,'a','b','a'].distinct());
+
 </script>

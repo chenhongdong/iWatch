@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    Array.prototype.distinct = function () {
+        var res = [];
+        for (var i = 1; i < this.length; i++) {
+            for (var j = i+1; j < this.length; j++) {
+                var num = 0;
+                if (this[i] == this[j]) {
+                    if (num == 0) {
+                        res.push(this.splice(j, 1)[0]);
+                    }
+                    num++;
+                }
+            }
+        }
+        return res;
+    };
+
+    function test(arr) {
+        var res = [];
+        for (var i = 1; i < arr.length; i++) {
+            for (var j = i + 1; j < arr.length; j++) {
+                var num = 0;
+                if (arr[j] == arr[i]) {
+                    if (num == 0) {
+                        res.push(arr.splice(j, 1)[0]);
+                    }
+                    num++;
+                }
+            }
+        }
+        return res;
+    }
+    
+    console.log(test([1,2,2,3,3,5,7,9,0,9,0,11,'a','b','a']));
+    
+    console.log([1,2,2,3,3,5,7,9,0,9,0,11,'a','b','a'].distinct());
+</script>
