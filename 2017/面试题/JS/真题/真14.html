@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+    <title>点评微生活</title>
+    <style>
+        *{margin:0;padding:0;}
+        html,body{width:100%;height:100%;}
+        #box{width:100%;height:100%;background:url('../../../timg.jpeg') no-repeat;background-size:cover;}
+    </style>
+</head>
+<body>
+<div id="box"></div>
+</body>
+</html>
+<script>
+    //1.以下为false的是?
+    //a. "1"==1 b. ''==0 c. 0=='0' d. ''=='0'
+    
+    //2.以下为false的是?
+    //a. 1+'9'==10 b. '5'-1==4 c. '3'*3 ==9
+    
+    //3.以下代码,最后一个输出值是?
+    for(var i=0;i<9;i++) 
+    console.log(i);
+    var i;
+    console.log(i); //?
+
+    //4.输出的结果是?
+    var x = 5;
+    (function () {
+        console.log(x*3);
+        var x = 3;
+    }());
+    
+    //5.下列输出值为?
+    function SayHello(n) {
+        return {
+            a: 'hello,'+n
+        };
+    }
+    var sh = new SayHello(0);
+    console.log(sh.a);
+
+    //6.描述css的盒模型
+    /*
+    * 标准盒模型:内容(content)、填充(padding)、边框(border)、边界(margin)
+    * IE盒模型:内容(content+padding+border)、边界(margin)
+    * */
+
+    //css3中的background-size属性有哪几种可能的值,对应效果是什么?
+    /*
+    * contain:等比例缩放
+    * cover:填满屏幕,多出的部分被裁掉
+    * */
+
+    //7.js的基本类型和复杂类型有哪种?
+    //基本:Number,String,Boolean,null,undefined
+    //复杂:Object
+
+    //8.为什么rem方式下的根字号要设置成62.5%,有没有更精准的方法
+    /*
+    * 浏览器绝大部分默认字体为16px,16*62.5%=10,10这个数容易计算,所以就选用了62.5%
+    * */
+
+    //9.前端为了兼容retina屏，都用到了哪些方法
+    /*
+    * 图片  @2x @3x图片
+    * 更好的方法是利用图片服务器,将要显示的图片通过url来处理
+    * 如  http://img.baidu.com/wasd.jpg
+    *   200*200图片
+    *   http://img.baidu.com/wasd_200*200.jpg
+    *   100*100图片
+    *   http://img.baidu.com/wasd_100*100.jpg
+    *
+    *   image-set可以根据用户设备的分辨率匹配合适的图像
+    * 如 background-image: image-set('1.jpg' 1x, '2.jpg' 2x, '3.png' 600dpi)
+    *
+    * 1px问题
+    *   .box{
+    *       position: relative
+    *   }
+    *   .box:after{
+    *       content:"";
+    *       position: absolute;
+    *       bottom:0;
+    *       left:0;
+    *       right:0;
+    *       border-bottom:1px solid #000;
+    *       -webkit-transform:scaleY(.5);
+    *       transform:scaleY(.5)
+    *   }
+    * */
+    
+    //10.如何用一句js将诸如'2月3日'的日期字符串替换成'2<i>月</i>3<i>日</i>'
+    var date = '2月3日';
+    date = date.replace(/[^\d]/g, function (w) {
+        return '<i>' + w + '</i>';
+    });
+    console.log(date);
+</script>
