@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{margin:0;padding:0;}
+        #demo{
+            width: 200px;
+            height: 150px;
+            background: #0c9;
+        }
+    </style>
+</head>
+<body>
+<div id="demo"></div>
+</body>
+</html>
+<script>
+    //函数节流基本思想:某些代码不能在没有间断的情况连续执行
+    //第一次调用函数,创建一个定时器,在指定的时间间隔后运行代码。
+    //第二次调用函数,清除上一次定时器,设置一个新定时器
+    function throttle(method, context) {
+        clearTimeout(method.timer);
+        method.timer = setTimeout(function () {
+            method.call(context);
+        }, 100);
+    }
+
+    //test
+    function resizeDiv() {
+        var oDiv = document.getElementById('demo');
+        oDiv.style.height = oDiv.offsetWidth + 'px';
+        console.log('哈哈');
+    }
+
+    window.onresize = function () {
+        throttle(resizeDiv);
+    }
+</script>
