@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #demo{
+            width: 100px;
+            height: 100px;
+            background: #0c9;
+            position: absolute;
+            top: 10px;
+        }
+    </style>
+</head>
+<body>
+<div id="demo" style="left:10px;"></div>
+</body>
+</html>
+<script>
+    //设定一个150ms后执行的定时器不代表到了150ms后就立即执行,它表示代码会在150ms后被加入到队列中
+
+    /*
+    * 关于定时器最重要的事情
+    *   指定的时间间隔表示何时将定时器代码添加到队列中,而不是何时执行代码
+    * */
+
+    //重复定时器setInterval的两个问题
+    //1.某些间隔会被跳过
+    //2.多个定时器的代码执行之间的间隔可能会比预期的小
+
+    //用setTimeout模拟setInterval可以避免这两个问题
+    /*setTimeout(function() {
+        //处理中
+        setTimeout(arguments.callee, interval);
+    }, interval);*/
+
+    //例子
+    setTimeout(function () {
+        var oDiv = document.getElementById('demo');
+        var left = parseInt(oDiv.style.left) + 5;
+        oDiv.style.left = left + 'px';
+
+        if (left < 200) {
+            setTimeout(arguments.callee, 50);
+        }
+    }, 50);
+
+
+    let books = new Map();
+    books.set('js', {name: '高级js开发'});
+    books.set('css', {name: 'less预处理器'});
+    console.log(books.size);
+    console.log(books.get('js'));
+//    books.delete('js');
+    console.log(books.has('js'));
+    books.forEach((value, key) => {
+        console.log(key + '=' + value);
+    });
+</script>
