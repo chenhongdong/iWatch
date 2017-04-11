@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>$.extend</title>
+</head>
+<body>
+<textarea name="" id="txt" cols="30" rows="10"></textarea>
+</body>
+</html>
+<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    ;(function ($) {
+        $.extend({
+            ltrim: function (text) {
+                return (text || '').replace(/^\s+/g, '');
+            },
+            rtrim: function (text) {
+                return (text || '').replace(/\s+$/g, '');
+            }
+        });
+    })(jQuery);
+
+    $('#txt').val(
+      $.trim('     test    ') + '\n' +
+      $.ltrim('     test    ') + '\n' +
+      $.rtrim('     test    ')
+    );
+</script>

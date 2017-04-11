@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{margin:0; padding:0;}
+        #demo{
+            position: relative;
+        }
+        #demo img{
+            width: 100px;
+            height: 100px;
+        }
+        /*利用一个遮罩层*/
+        #demo .box{
+            position: absolute;
+            left: 0;
+            top: 0;
+            width:100px;
+            height: 100px;
+            background: #fff;
+            animation: ok 1.5s linear infinite;
+            -webkit-animation: ok 1.5s linear infinite;
+        }
+        @keyframes ok {
+            0%{left:0;}
+            100%{left:100px;}
+        }
+        @-webkit-keyframes ok {
+            0%{left:0;}
+            100%{left:100px;}
+        }
+    </style>
+</head>
+<body>
+<div id="demo">
+    <img src="duihao.png" alt="">
+    <div class="box"></div>
+</div>
+</body>
+</html>
