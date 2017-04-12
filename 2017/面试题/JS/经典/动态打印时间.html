@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>实现格式yyyy-MM-dd hh:mm:ss</title>
+</head>
+<body>
+<div id="time"></div>
+</body>
+</html>
+<script>
+    var oDiv = document.querySelector('#time');
+    
+    function time() {
+        var d = new Date();
+        var timer = d.toLocaleString();
+        console.log(timer);
+        timer = timer.replace(/(\/)/g, '-').replace(/[上午|下午]/g, '');
+        oDiv.innerHTML = timer;
+    }
+
+    time();
+
+    setTimeout(function () {
+        time();
+        setTimeout(arguments.callee, 1000);
+    }, 1000);
+</script>
