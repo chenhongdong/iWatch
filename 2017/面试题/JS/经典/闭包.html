@@ -21,6 +21,23 @@
     </script>
 </head>
 <body>
+<ul>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+</ul>
+<script>
+    var aLi = document.getElementsByTagName('li');
+    var len = aLi.length;
 
+    for (var i = 0; i < len; i++) {
+        aLi[i].onclick = (function (i) {
+            return function () {
+                alert(i+1);
+            }
+        })(i);
+    }
+</script>
 </body>
 </html>
