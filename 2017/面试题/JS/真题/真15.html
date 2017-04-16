@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p>1</p>
+<p>2</p>
+<p>3</p>
+<script>
+    //1
+    var z = 10;
+    function foo() {
+        console.log(z);
+    }
+    (function (funArg) {
+        var z = 20;
+        funArg();
+    })(foo);
+
+    //2
+    var data = [];
+    for (var k = 0; k < 3; k++) {
+        data[k] = function () {
+            console.log(k);
+        };
+    }
+    data[0]();
+    data[1]();
+    data[2]();
+
+    //3.三行a,b,c的输出分别是什么？
+    function fun(n, o) {
+        console.log(o);
+        return {
+            fun: function (m) {
+                return fun(m, n);
+            }
+        };
+    }
+    var a = fun(0); a.fun(1); a.fun(2); a.fun(3);
+    var b = fun(0).fun(1).fun(2).fun(3);
+    var c = fun(0).fun(1); c.fun(2); c.fun(3);
+
+    //4.
+    var a = 100;
+    function testResult() {
+        var b = 2 * a;
+        var a = 200;
+        var c = a / 2;
+        alert(b);
+        alert(c);
+    }
+    testResult();
+
+    //5
+    var tt = 'aa';
+    function test() {
+        alert(tt);
+        var tt = 'dd';
+        alert(tt);
+    }
+    test();
+</script>
+</body>
+</html>
+<script>
+    //es6 数组from方法
+    //让类数组元素变成真正的数组
+    var aP = document.querySelectorAll('p');
+    console.info(Array.from(aP));
+</script>
