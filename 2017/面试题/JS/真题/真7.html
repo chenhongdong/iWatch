@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>51talk</title>
+    <style>
+        *{margin:0;padding:0;}
+        ul,ol{list-style: none}
+        ul{display:flex}
+        ul li:first-child{height:200px;}
+        ul li {flex: 1; height: 100px;}
+        ul li:nth-of-type(odd){background:#fff;}
+        ul li:nth-of-type(even){background:gray;}
+        ul li:hover {background:yellow}
+    </style>
+</head>
+<body>
+<ul>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+</ul>
+</body>
+</html>
+<script>
+    //1.['1', '2', '3'].map(parseInt)答案是多少?  [1, NaN, NaN]
+    console.log(['1', '2', '3'].map(parseInt));
+
+    //2.使用css的flexbox布局,不能实现以下哪一个效果 B
+    /*
+    * A.三列布局,随容器宽度等宽弹性伸缩
+    * B.多列布局,每列的高度按照内容最高的一列等高
+    * C.三列布局,左列宽度固定,中,右列随容器宽度等宽弹性伸缩
+    * D.多个宽高不等的元素,实现无缝瀑布流布局
+    * */
+
+    //3.下列哪个操作是W3C标准定义的阻止事件向父容器传递   D
+    /*
+    * A. e.preventDefault()
+    * B. e.cancelBubble = true
+    * C. e.stopPropagation()
+    * D. e.stopImmediatePropagation()
+    * */
+
+    //4.请写一个表格以及对应的css,使表格奇数行为白色背景,偶数行为灰色背景,鼠标移上去时为黄色背景
+
+    //5.在空白处填入适当的代码使输出结果成立
+    function showMoney() {
+        //此处为空白
+        return this.money;
+    }
+
+
+    var personA = new Object;
+    var personB = new Object;
+
+    personA.money = '200';
+    personB.money = '350';
+
+    personA.showMoney = showMoney;
+    personB.showMoney = showMoney;
+    console.log(personA.showMoney());   //'200'
+    console.log(personB.showMoney());   //'350'
+
+    //6.删除给定数组中的第二项和第三项,并且在得到的新的数组中第一项后面添加一个新的值
+    /*var arr1 = ['a','b','c','d','e'];
+    var arr2 = arr1.1(2, 3, 'newValue');
+    1,2,3分别填写?*/
+    //1: splice 2: 1 3: 2
+
+    //7.写一个function,清除字符串前后的空格
+    function trim(str) {
+        return str.replace(/^\s+|\s+$/, '');
+    }
+
+    //8.如果需要手动写动画,你认为最小时间间隔是多久,为什么?
+    //10-30ms
+    //显示器的默认频率是60HZ,1秒闪烁60次,所以是1/60*1000 = 16.7ms
+
+    //9.下列程序,写出x,y,z的值
+    var x = 1,y = z = 0;
+    function add(n) {
+        return n = n + 1;
+    }
+    y = add(x);
+    function add(n) {
+        return n = n + 3;
+    }
+    z = add(x);
+
+    //10.写一个foo函数,输出所有页面宽度和高度大于50px的节点
+    function foo() {
+        return Array.prototype.filter.call(document.querySelectorAll('body *'), function (node) {
+            return node.offsetWidth > 50 && node.offsetHeight > 50;
+        });
+    }
+</script>

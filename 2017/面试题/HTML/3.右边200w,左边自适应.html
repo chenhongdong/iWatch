@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{margin: 0;padding:0}
+        /*左边左浮动,margin-right负值;右边右浮动*/
+        /*.left{float:left;width:100%;background:#0c9;margin-right:-200px;}*/
+        /*.right{width:200px;float:right;background: greenyellow;}*/
+        /*右边绝对定位,左边margin-right*/
+        /*.left{margin-right:200px;background: #00a1f5}*/
+        /*.right{position:absolute;right:0;top:0;width:200px;background: yellow}*/
+        /*利用flex布局轻松实现*/
+        .box{display: flex}
+        .left{flex:1;background: #0c9;}
+        .right{flex: 0 0 200px;width: 200px;background:yellow}
+    </style>
+</head>
+<body>
+<div class="box">
+    <div class="left">左边自适应</div>
+    <div class="right">右边宽200</div>
+</div>
+</body>
+</html>

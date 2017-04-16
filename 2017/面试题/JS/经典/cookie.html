@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    //cookie用来保存网页信息
+    //设置cookie
+    function setCookie(name, value, day) {
+        var date = new Date();
+
+        date.setDate(date.getDate() + day);
+
+        document.cookie = name + '=' + value + ';expires=' + date;
+    }
+
+    setCookie('God', 'Love', 7);
+
+    //读取cookie
+    function getCookie(name) {
+        var arr = document.cookie.split('; ');
+        var i = 0;
+        for (i = 0; i < arr.length; i++) {
+            var arr2 = arr[i].split('=');
+            if (arr2[0] == name) {
+                return arr2[1];
+            }
+        }
+        return '';
+    }
+    
+    alert(getCookie('God'));
+    alert(getCookie('abc'));
+    
+    //删除cookie
+    function removeCookie(name) {
+        setCookie(name, '1', -1);
+    }
+
+
+    (function() {
+        var a = b = 5;
+    })();
+    console.log(b);
+    console.log(a);
+</script>

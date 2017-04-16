@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    ;(function ($) {
+        
+    })(jQuery);
+
+    //$.fn.extend()方法  用于扩展对象方法的插件
+
+    //$.extend()方法   用于扩展全局函数的插件
+    //$.extend()方法经常用于设置插件方法的一系列默认参数
+
+    var settings = {validate: false, limit: 5, name: 'foo'};
+    var options = {validate: true, name: 'bar'};
+    var newOpts = $.extend(settings, options);
+
+    console.log(newOpts);
+    
+    
+    function foo(opts) {
+        opts = $.extend({
+            name: 'foo',
+            length: 1,
+            dataType: 'xml'
+        }, opts);
+        return opts;
+    }
+
+    var a1 = foo({name: '我的歌声里', length: 5, dataType: '曲婉婷'});
+    console.log(a1);
+    var a2 = foo();
+    console.log(a2);
+</script>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <title>易教空间</title>
+</head>
+<body ng-controller="my">
+<div id="element"></div>
+<input type="radio" name="hello">
+<div ng-bind-html="msg"></div>
+</body>
+</html>
+<script src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
+<script src="http://apps.bdimg.com/libs/angular.js/1.5.0-beta.0/angular-sanitize.min.js"></script>
+<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    //1.现页面内仅有一个div元素
+    setTimeout(function () {
+        var r = parseInt(Math.random() * 100);
+        var a = '<a m="'+(r+1)+'">'+r+'</a>';
+        $('#element').append(a);
+    }, 1000);
+    
+    //任意时间点击div都会alert出属性m和内容相加
+    
+    $('#element').on('click', 'a', function (data) {
+        var attr = $(this).attr('m');
+        var txt = $(this).text();
+        alert(attr + '+' + txt);
+    });
+
+    //2.a(5)返回值是多少?执行a(5)后k和c的值分别是多少?
+    var k = c = 0;
+    function a(n) {
+        return n ? (n - 1) * a(n - 1) : n;
+        k++;
+        c++;
+        if (c > 10) return c;
+    }
+    console.log(a(5));
+    console.log(k, c);
+
+    //3.输出结果是什么?
+    function cc(i) {
+        if (i == 3) { i += 2 }
+        if (i == 5) { i-- }
+        if (i == 4) { i -= 2 }
+        return i;
+    }
+
+    for (var i = 2; i < 6; i++) {
+        console.log(cc(i));
+    }
+
+    //4.写出一个方法将字符串"abcdefg"逆序为"gfedcba"
+    var str = "abcdefg";
+    function rev(str) {
+        return str.split('').reverse().join('');
+    }
+    console.log(rev(str));
+
+    //5.让radio为选中状态
+    $('input[type=radio]').prop('checked', true);
+
+    //6.针对Angular,将数组遍历显示到页面的写法。如[5,4,6,8,7,2,9,3]
+    var arr = [5,4,6,8,7,2,9,3];
+
+    angular.forEach(arr, function (data) {
+        console.log(data);
+    });
+
+    //7.针对Angular如何将请求得到的html元素放到dom中且不转义
+    var app = angular.module('app', ['ngSanitize']);
+    app.controller('my', ['$scope', function ($scope) {
+        var data = '中国加油<strong>一起来</strong>';
+
+        $scope.msg = data;
+    }]);
+
+
+
+    //8.给Array本地对象增加一个原型方法，它用于删除数组条目中重复的条目（可能有多个），返回值是一个包含被删除的重复条目的新数组
+    Array.prototype.distinct=function(){
+        var that=this;
+        var arr=[];
+        for(var i=1;i<that.length;i++){
+            for(var j=i+1;j<that.length;j++){
+                var num = 0;
+                if(that[i]==that[j]){
+                    if (num==0) {
+                        arr.push(that.splice(j, 1)[0]);
+                    }
+                    num++;
+                }
+            }
+        }
+        return arr;
+    }
+    console.log([1,2,2,3,3,5,7,9,0,9,0,11,'a','b','a'].distinct());
+
+    function mySort() {
+        var tags = new Array();//使用数组作为参数存储容器
+        tags = Array.prototype.slice.call(arguments);
+        tags.sort(function(a, b){
+            return a - b;
+        });
+        return tags;//返回已经排序的数组
+    }
+
+    var result = mySort(50,11,16,32,24,99,57,100)//传入参数个数不确定
+    console.info(result);//显示结果
+
+</script>

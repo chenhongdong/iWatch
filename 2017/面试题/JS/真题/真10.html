@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>寺库</title>
+</head>
+<body>
+<div style="width:500px;height:400px;position: absolute;left:50%;top:50%;margin:-200px 0 0 -250px;background: #0c9;">
+   <div style="float:left;">浮动</div>
+</div>
+</body>
+</html>
+<script>
+    //1.Doctype作用?严格模式与混杂模式如何区分?它们有何意义?
+    /*
+    * 告知浏览器以何种模式来渲染文档
+    * 严格模式的排版和js运作模式是以浏览器支持的最高标准运行
+    * 混杂模式中,页面以宽松的向下兼容的方式显示
+    * doctype不存在或者格式不正确会导致文档以混杂模式呈现
+    * */
+
+    //2.行内元素有哪些?块级元素有哪些?空元素有哪些?
+    /*
+    * 行内:a, b, span, strong, em, i, img, input
+    * 块级:p, div, h1-h6, ul, li, dl, dt, dd
+    * 空: img, hr, br, input, meta, link
+    * */
+
+    //3.介绍一下css的盒子模型?
+    /*
+    * 标准盒模型: 内容(content) + 填充(padding) + 边框(border) + 边界(margin)
+    * IE盒模型: 内容(content+border+padding) + 边界(margin)
+    * */
+
+    //4.css选择符有哪些?哪些属性可以继承?优先级算法如何计算?css3新增伪类有哪些?
+    /*
+    * 选择符: id, class, 标签, 后代, 兄弟, 群组
+    * 继承属性: font-size, font-family, color, text-indent
+    * 优先级: !important > 行内 > id > class > 标签
+    * css3新增伪类: :first-of-type, :last-of-type, :nth-child, :nth-of-type, :checked, :enabled
+    * */
+
+    //5.如何居中div?如何居中一个浮动元素?(宽500,高400,垂直居中)
+    /*
+    * (1).div{width:500px;height:400px;margin:0 auto;}
+    * (2).外层设一个div父元素包住浮动元素
+    *       <div style="width:500px;height:400px;position:absolute;left:50%;top:50%;margin:-200px 0 0 -250px;">
+    *           <div style="float:left;">浮动</div>
+    *       </div>
+    * */
+
+    //6.用过媒体查询,针对移动端的布局吗?
+    /*
+    * @media screen and (min-width:320px) and (max-width:360px) { }
+    * */
+
+    //7.使用css预处理器吗?喜欢哪个?
+
+    //8.如何创建一个对象?
+    /*
+    * 1.var obj = new Object
+    * 2.var obj = { }
+    * 3.var obj = Object.create({name:'qq'})
+    * */
+
+    //9.下列函数执行输出的值
+    function fn(secoo) {
+        console.log(secoo);
+        var secoo = 100;
+        function secoo() {
+            console.log('hi');
+        }
+        console.log(secoo);
+    }
+    fn(99);
+
+    //10.谈谈this对象的理解
+    /*
+    *   this表示当前对象,this指向由上下文来决定
+    *   全局下this指向window
+    *   函数调用下this指向window
+    *   对象调用下,this指向调用的对象
+    *   new实例化对象,this指向实例化对象
+    *   使用call或apply可以改变this指向
+    * */
+
+    //11.new操作符具体干了什么?
+    /*
+    * 1.创建一个空对象,并且this引用该对象,同时还继承该函数的原型
+    * 2.属性和方法被加入到this引用的对象中
+    * 3.新创建的对象由this引用,并且最后隐式的返回this
+    * */
+
+    //12.对象深度克隆,如何获取对象长度?
+    var json = {
+        name: 'chd',
+        age: 18,
+        sex: '男',
+        aa:'wto'
+    };
+    //方法1
+    var num = 0;
+
+    for (var i in json) {
+        if(json.hasOwnProperty(i)) num++;
+    }
+
+    //方法2
+    var arr = Object.keys(json);
+    alert(arr.length);
+    alert(num);
+
+    //13.写一个事件委托的方法,注意兼容性
+    function delegate(obj, name) {
+        addEvent(obj, 'click', function (e) {
+            var e = e || event;
+            var target = e.target || e.srcElement;
+            
+            if (target.nodeName.toLowerCase() == name) {
+                console.log('事件委托');
+            }
+        });
+    }
+    function addEvent(obj, ev, fn) {
+        if (obj.addEventListener) {
+            obj.addEventListener(ev, fn, false);
+        } else {
+            obj.attachEvent('on' + ev, function () {
+                fn.call(obj);
+            });
+        }
+    }
+
+    //14.你有哪些性能优化的方法?
+    /*
+     * 1.尽量减少HTTP请求
+     *   合并图片如雪碧图，合并js和css
+     * 2.使用CDN内容分发网络
+     * 3.添加Expire/Cache-Control头
+     * 4.启用Gzip压缩
+     * 5.将css放在页面最上面
+     *   避免页面出现空白或闪烁的问题
+     * 6.将js放在最下面
+     *   会先将内容呈现出来，不会让用户看到空白内容
+     * 7.避免在css中使用css表达式
+     *   页面显示和缩放，页面滚动，移动鼠标都会重新计算
+     * 8.把js和css放到外部文件中
+     * 9.减少DNS查询
+     *   利用浏览器缓存机制，减少DNS的重复查找，节省时间
+     * 10.最小化js和css
+     * 11.避免重定向
+     * 12.配置实体标签Etag
+     *   可以使用本地缓存版本，减轻服务器负担
+     * 13.使用ajax缓存
+     * */
+
+    //15.小贤是一条可爱的小狗(Dog),它的叫声很好听(wow),每次看到主人的时候就会乖乖的一声(yelp),从这段可以得到以下对象:
+    function Dog() {
+        this.wow = 'wow';
+    }
+    Dog.prototype.yelp = function () {
+        console.log(this.wow);
+    };
+
+    var xx = new Dog();
+    xx.yelp();
+    //小芒和小贤一样,原来也是一条可爱的小狗,可是突然有一天疯了(MadDog),一看到人就会每隔半秒叫一声(wow)地不停叫唤(yelp)。请根据描述,按示例的形式用代码来实现。(继承,原型,setInterval)
+    function MadDog() {
+        Dog.apply(this, arguments);
+    }
+
+    MadDog.prototype = new Dog();
+    
+    MadDog.prototype.yelp = function () {
+        var that = this;
+        setInterval(function () {
+            console.log(that.wow);
+        }, 500);
+    };
+
+    var xm = new MadDog();
+    xm.yelp();
+
+</script>

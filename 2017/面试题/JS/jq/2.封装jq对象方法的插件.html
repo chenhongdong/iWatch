@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>$.fn.extend</title>
+    <style>
+        *{margin:0;padding:0;}
+        .odd{background:#c94a4a}
+        .even{background:#00a1f5}
+        .selected{background:yellowgreen}
+    </style>
+</head>
+<body>
+<div style="color:red">no1</div>
+<div style="color:green">no2</div>
+<div style="color:blue">no3</div>
+<div style="color:gold">no4</div>
+<table id="tab1" border="1" cellspacing="0" cellpadding="0">
+    <thead>
+        <th></th>
+        <th>姓名</th>
+        <th>性别</th>
+        <th>暂住地</th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                <input type="checkbox" name="">
+            </td>
+            <td>张三</td>
+            <td>男</td>
+            <td>浙江宁波</td>
+        </tr>
+        <tr>
+            <td>
+                <input type="checkbox" name="">
+            </td>
+            <td>Rain</td>
+            <td>男</td>
+            <td>韩国首尔</td>
+        </tr>
+        <tr>
+            <td>
+                <input type="checkbox" name="">
+            </td>
+            <td>翠花</td>
+            <td>女</td>
+            <td>辽宁鞍山</td>
+        </tr>
+        <tr>
+            <td>
+                <input type="checkbox" name="">
+            </td>
+            <td>李四</td>
+            <td>男</td>
+            <td>河南平顶山</td>
+        </tr>
+    </tbody>
+</table>
+</body>
+</html>
+<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<script src="jquery.color.js"></script>
+<script src="jquery.alertBgColor.js"></script>
+<script>
+$(function () {
+    console.log($('div').color());
+
+    $('div').color('#0c9');
+
+    $('#tab1').alertBgColor().find('th').css('color','green');
+});
+</script>

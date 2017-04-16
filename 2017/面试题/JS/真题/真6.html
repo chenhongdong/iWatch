@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>楚楚街</title>
+</head>
+<body>
+<div id="chuchujie">
+    <a href="">1</a><a href="">2</a><a href="">3</a><a href="">4</a><a href="">5</a>
+</div>
+</body>
+</html>
+<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    //1.以下程序运行的结果
+    var a = 1;
+    test();
+    function test() {
+        console.log(a);
+        var a = 2;
+        console.log(a);
+    }
+
+    //2.var stringArray = ['This', 'is', 'chuchujie'],请在控制台中输出'This is chuchujie'
+    var stringArray = ['This', 'is', 'chuchujie'];
+    console.log(stringArray.join(' '));
+
+    //3.请写一个函数去除数组的重复项:如[2008,34,78,2,45,34,78,90,90,12,34]处理后为[2008,34,78,2,45,90,12]
+    function unique(arr) {
+        var res = [];
+        var json = {};
+        for (var i = 0; i < arr.length; i++) {
+            if (!json[arr[i]]) {
+                json[arr[i]] = 1;
+                res.push(arr[i]);
+            }
+        }
+        return res;
+    }
+    
+    console.log(unique([2008,34,78,2,45,34,78,90,90,12,34]));
+
+    //4.用js或者jq获取id为chuchujie的div里面的所有a标签,并把字体大小设置为18px;同时把第3个a标签设置为块级元素,并把它的宽高分别设置为300px和500px
+    /*$('#chuchujie a').css('font-size', '18px').eq(2).css({
+        display: 'block',
+        width: 300,
+        height: 500
+    });*/
+
+    //5.请在网页上输出'九九乘法表'
+    for (var i = 1; i <=9; i++) {
+        for (j = 1; j <=9; j++) {
+            document.write(i + 'x' + j+'='+ i*j +'<br>');
+        }
+    }
+</script>

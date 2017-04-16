@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    //1.请写出x的值是多少
+    if (window) {
+        var x = 123;
+    }
+    console.log(x);
+
+    //2.写出test的结果
+    /*(function () {
+        eval('var test = 5');
+    })();
+    console.log(test);*/
+
+    //3.构建一个自定义版本的forEach函数
+    if (!Array.prototype.forEach) {
+        Array.prototype.forEach = function (fn, context) {
+            for (var i = 0, len = this.length; i < len; i++) {
+                if (typeof fn == 'function' && Object.prototype.hasOwnProperty.call(this, i)) {
+                    fn.call(context, this[i], i, this);
+                }
+            }
+        };
+    }
+
+    //4.用递归实现"chirp-chirp-chirp"字符串
+
+    //5.取出一个不定长度数组中的最大值(数组元素均为正数)
+    var arr = [1,22,8,11,32,99,100,87,66,111,250,88];
+    console.log(Math.max.apply(null, arr))
+
+    //6.写出y的值是多少
+    function person(name, age) { };
+    var y = person.length;
+</script>

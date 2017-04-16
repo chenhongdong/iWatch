@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    //非严格模式下可以使用arguments.callee代替函数名
+    //arguments.callee指的是正在执行的函数
+    function factorial(num) {
+        if (num <= 1) {
+            return 1;
+        } else {
+            return num * arguments.callee(num-1);
+        }
+    }
+    
+    var n = factorial;
+    factorial = null;
+    console.log(n(4));
+
+    //严格模式下访问arguments.callee属性会报错
+    //可以使用命名函数表达式来实现
+    var fact = (function f(num) {
+       if (num <= 1) {
+           return 1;
+       } else {
+           return num * f(num-1);
+       }
+    });
+    
+    var b = fact;
+    fact = null;
+    console.log(b(5));
+</script>

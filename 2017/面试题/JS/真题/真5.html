@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>去哪儿</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    //1.以下哪个不是数组的方法
+    //a.join b.split c.push d.concat
+
+    //2.下面程序的运行结果是
+    var Z = 30;
+    function test() {
+        console.log(Z);
+        var Z = 10;
+        console.log(Z);
+        Z = 20;
+        function Z() {};
+        console.log(Z);
+    }
+    test();
+
+    //3.下面程序的运行结果
+    function test2() {
+        var x = 10;
+        var y = 20;
+        return function () {
+            console.log(x);
+            console.log(y);
+        }
+    }
+    var x = 30;
+    var y = 40;
+    var tmp = test2();
+    tmp();
+
+    //4.下面程序的运行结果
+    function A(){}
+    A.prototype.x = 10;
+    var a1 = new A();
+    A.prototype = {x:20, y:30};
+    var a2 = new A();
+    console.log(a1.x);
+    console.log(a1.y);
+    console.log(a2.x);
+    console.log(a2.y);
+
+    //5.下列哪些用法是jQuery的正确用法
+    /*
+    * a. $('input[type=text]')
+    * b. $(function(){})()
+    * c. $('<div></div>')
+    * d. $(document.getElementsByTagName('body')[0])
+    * */
+
+    //6. '5' + 3的运行结果是?
+
+    //7.列举5个以上DOM的属性或方法,列举事件的常用属性和方法
+
+    //8.实现一个数组的indexOf方法
+    if (!Array.prototype.indexOf) {
+        Array.prototype.indexOf = function (target, pos) {
+            var index = -1;
+            pos = pos * 1 || 0;
+
+            for (var i = 0; i < this.length; i++) {
+                if (pos <= i && target == this[i]) {
+                    index = i;
+                    break;
+                }
+            }
+            return index;
+        }
+    }
+
+    /*9.实现一个方法,将下列数据按照价格由低到高排序,并输出航班号和价格
+    *   var json = {
+             "CA123": {price: 300},
+             "HU123": {price: 180},
+             "MU123": {price: 150},
+             "KN123": {price: 350},
+             "3U123": {price: 200},
+             "SC123": {price: 210}
+         }
+    *   输出html代码
+    *   <p>航班:MU123, 价格: 150</p>
+    *   <p>航班:HU123, 价格: 180</p>
+    *   <p>航班:3U123, 价格: 200</p>
+    *   <p>航班:SC123, 价格: 210</p>
+    *   <p>航班:CA123, 价格: 300</p>
+    *   <p>航班:KN123, 价格: 350</p>
+    * */
+    //原数据
+    var json = {
+        "CA123": {price: 300},
+        "HU123": {price: 180},
+        "MU123": {price: 150},
+        "KN123": {price: 350},
+        "3U123": {price: 200},
+        "SC123": {price: 210}
+    };
+
+    var res = [];
+
+    for (var x in json) {
+        res.push({
+            name: x,
+            price: json[x].price
+        });
+    }
+
+    res.sort(function (a, b) {
+        return a.price - b.price;
+    });
+    
+
+    for (var i = 0; i < res.length; i++) {
+        var oP = document.createElement('p');
+        oP.innerHTML = '航班:' + res[i].name + ', 价格:' + res[i].price;
+        document.body.appendChild(oP);
+    }
+
+    //10.实现一个斐波那契数列
+    function fabi(n) {
+        if (n <= 2) return 1;
+        return fabi(n-1) + fabi(n-2);
+    }
+    
+</script>

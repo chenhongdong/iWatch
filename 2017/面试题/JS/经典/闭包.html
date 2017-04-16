@@ -15,9 +15,29 @@
         var a = fun(0); a.fun(1); a.fun(2); a.fun(3);
         var b = fun(0).fun(1).fun(2).fun(3);
         var c = fun(0).fun(1);  c.fun(2);  c.fun(3);
+
+
+
     </script>
 </head>
 <body>
+<ul>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+</ul>
+<script>
+    var aLi = document.getElementsByTagName('li');
+    var len = aLi.length;
 
+    for (var i = 0; i < len; i++) {
+        aLi[i].onclick = (function (i) {
+            return function () {
+                alert(i+1);
+            }
+        })(i);
+    }
+</script>
 </body>
 </html>
