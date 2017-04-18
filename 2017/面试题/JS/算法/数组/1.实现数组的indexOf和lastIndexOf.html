@@ -4,11 +4,12 @@
 <meta charset="UTF-8">
 <title>Document</title>
 <script>
+    //indexOf
     if (typeof Array.prototype.indexOf != 'function') {
         Array.prototype.indexOf = function (target, pos) {
-            var index = -1,
-                pos = pos * 1 || 0,
-                len = this.length;
+            var index = -1, len = this.length;
+            pos = pos * 1 || 0;
+
 
             for (var i = 0; i < len; i++) {
                 if (i >= pos && this[i] ===target) {
@@ -22,6 +23,26 @@
 
     var arr = [5, 1, 2, 4, 3, 0];
     alert(arr.indexOf(1, '2'));
+
+    //lastIndexOf
+    if (typeof Array.prototype.lastIndexOf != 'function') {
+        Array.prototype.lastIndexOf = function (target, position) {
+            var index = 0, len = this.length - 1;
+            position = position * 1 || len;
+
+            for (var i = len; i > -1; i--) {
+                if (i <= position && this[i] === target) {
+                    index = i;
+                    break;
+                }
+            }
+            return index;
+        };
+    }
+
+    var array = [1, 'www', 'wto', 'www', 1, 'qq'];
+    alert(array.lastIndexOf(1));
+    alert(array.lastIndexOf('www'));
 </script>
 </head>
 <body>
