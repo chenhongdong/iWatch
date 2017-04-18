@@ -70,4 +70,14 @@
     //让类数组元素变成真正的数组
     var aP = document.querySelectorAll('p');
     console.info(Array.from(aP));
+
+    function a() {
+        return 1;
+    }
+    function b() {
+        return 2;
+    }
+
+    var res = a.apply(b, [1,2,3]);
+    alert(res);
 </script>

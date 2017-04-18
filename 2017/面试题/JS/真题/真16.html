@@ -71,16 +71,18 @@
 
     //6. 以下代码有哪些可以优化的点？
     var rwrap = function (func, wrapper, opt, keepReturnValue) {
-      if (opt == null) opt = 0;
+//      if (opt == null) opt = 0;
+        opt = opt || 0;
+        var _this = this;
       return function() {
           if (Array.prototype.toString.call(func) == '[object Function]') {
-              var ret = func.apply(this, arguments);
+              var ret = func.apply(_this, arguments);
           }
           if (keepReturnValue && ret !== undefined) return ret;
           if (ret >= 0) {
               ret = arguments[opt];
           } else if (opt == 'this' || opt == 'context') {
-              ret = this;
+              ret = _this;
           }
           if (typeof wrapper == 'function') {
               function wrapper() {}
