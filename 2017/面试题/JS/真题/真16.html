@@ -76,7 +76,6 @@
           if (Array.prototype.toString.call(func) == '[object Function]') {
               var ret = func.apply(this, arguments);
           }
-          console.log(ret);
           if (keepReturnValue && ret !== undefined) return ret;
           if (ret >= 0) {
               ret = arguments[opt];
@@ -91,21 +90,7 @@
           return wrapper ? new wrapper(ret) : ret;
       };
     };
-    var a = '哇哈哈';
-    function A() {
-        this.a = '2017';
-    }
 
-    var b = new A();
-    function aaa() {
-        console.log(1);
-    }
-    function bbb() {
-        console.log(2)
-    }
-//    aaa.apply(bbb, [1,2,3]);
-
-//    console.log(rwrap(aaa, b)());
 
     //7.js给予一个浮点数，要求只取出整数部分。请提供尽可能多的方法
     var n = 23.34;
@@ -117,6 +102,38 @@
     //修正二进制数不精确问题
     console.log((0.3*100-0.1*100)/100);
 
+    //8.请用js编写一段polyfill,使低版本的浏览器支持Array.prototype.indexOf和Array.prototype.lastIndexOf
+    //indexOf
+    if (typeof Array.prototype.indexOf != 'function') {
+        Array.prototype.indexOf = function (target, position) {
+            var index = 0, len = this.length;
+            position = position * 1 || 0;
+
+            for (var i = 0; i < len; i++) {
+                if (i >= position && this[i] === target) {
+                    index = i;
+                    break;
+                }
+            }
+            return index;
+        };
+    }
+    
+    //lastIndexOf
+    if (typeof Array.prototype.lastIndexOf != 'function') {
+        Array.prototype.lastIndexOf = function (target, position) {
+            var index = 0, len = this.length - 1;
+            position = position * 1 || len;
+
+            for (var i = len; i > 0; i--) {
+                if (i <= position && this[i] === target) {
+                    index = i;
+                    break;
+                }
+            }
+            return index;
+        };
+    }
 </script>
 </body>
 </html>
