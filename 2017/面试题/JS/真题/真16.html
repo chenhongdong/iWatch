@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>360</title>
+    <style>
+        *{margin:0;padding:0;color:red;}
+        input[type="button"]{background:#0c9;color:#fff}
+        ul > li{color:#0c9;}
+        #box{width:400px;height:300px;border:1px solid #000;}
+    </style>
+</head>
+<body>
+<input type="button" value="按钮">
+<ul>
+    <li>
+        1
+        <ol>
+            <li>1-1</li>
+        </ol>
+    </li>
+    <li>2</li>
+    <li>3</li>
+</ul>
+<div id="box"></div>
+<script>
+    //1.以下描述，哪些是“反语义化”的?(多选)
+    /*
+    * A. Font Awesome网站用<i>标签来定义矢量小图标
+    * B. <b>重要通知：</b>今天下午<font color="red">2点到5点半</font>小区停电
+    * C. <ul><li>旧功能</li><li>新功能<img src="new.gif" /></li></ul>
+    * D. <label for="test">测试</label><input id="test" type="radio" name="test"/>
+    * */
+
+    //2.以下代码执行后，array的结果是？
+    var array = [-1, 1, 3, 4, 6, 10];
+    array.sort((a, b) => Math.abs(a-3) - Math.abs(b-3));
+    /*
+    * A. [3, 4, 1, 6, -1, 10]
+    * B. [-1, 1, 3, 4, 6, 10]
+    * C. [10, 6, 4, 3, 1, -1]
+    * D. [10, -1, 6, 1, 4, 3]
+    * */
+
+    /*3.已知有5顶帽子，3顶白帽子，2顶黑帽子，甲乙丙三个聪明人头上各带一顶帽子，他们不能看到自己的帽子，但是可以看到另外两个人的。
+    *   甲乙丙可以轮流说话，但只能说“我的帽子颜色是黑(白)色”和“我不知道自己帽子的颜色。”现在甲先说了“我不知道自己帽子的颜色”，
+    *   乙接着说“我不知道自己帽子的颜色”，现在轮到丙说，丙会说：
+    *   A. 我不知道自己帽子的颜色
+    *   B. 我的帽子颜色是白色
+    *   C. 我的帽子颜色是黑色
+    * */
+
+    //4. 请将以下选择器按照优先级排序，并给出选择器的例子
+    /*
+    * 类选择器
+    * ID选择器
+    * 子选择器
+    * 通用选择器
+    * 元素选择器
+    * 后代选择器
+    * 兄弟选择器
+    * 伪类/伪元素选择器
+    * 属性选择器
+    *
+    *
+    * id > 类选择器 > 元素选择器 > 兄弟选择器 > 子选择器 > 后代选择器 > 通用选择器 > 属性选择器 > 伪类选择器
+    * #box > .box > div > h1+p > ul>li > ul li > * > input[type="text"] > a:hover,li:nth-of-type
+    * */
+
+    //5.给矩形div画一个对角线，请写一段js代码，判断鼠标点击div时，光标点相对于对角线的位置状态
+
+    //6. 以下代码有哪些可以优化的点？
+    var rwrap = function (func, wrapper, opt, keepReturnValue) {
+//      if (opt == null) opt = 0;
+        opt = opt || 0;
+        var _this = this;
+      return function() {
+          if (Array.prototype.toString.call(func) == '[object Function]') {
+              var ret = func.apply(_this, arguments);
+          }
+          if (keepReturnValue && ret !== undefined) return ret;
+          if (ret >= 0) {
+              ret = arguments[opt];
+          } else if (opt == 'this' || opt == 'context') {
+              ret = _this;
+          }
+          if (typeof wrapper == 'function') {
+              function wrapper() {}
+              wrapper.prototype.constructor = wrapper;
+          }
+
+          return wrapper ? new wrapper(ret) : ret;
+      };
+    };
+
+
+    //7.js给予一个浮点数，要求只取出整数部分。请提供尽可能多的方法
+    var n = 23.34;
+    console.log(parseInt(n));
+    console.log(Math.floor(n));
+    console.log(Math.ceil(n));
+    console.log(Math.round(n));
+    console.log(Number(n).toFixed(0));
+    //修正二进制数不精确问题
+    console.log((0.3*100-0.1*100)/100);
+
+    //8.请用js编写一段polyfill,使低版本的浏览器支持Array.prototype.indexOf和Array.prototype.lastIndexOf
+    //indexOf
+    if (typeof Array.prototype.indexOf != 'function') {
+        Array.prototype.indexOf = function (target, position) {
+            var index = 0, len = this.length;
+            position = position * 1 || 0;
+
+            for (var i = 0; i < len; i++) {
+                if (i >= position && this[i] === target) {
+                    index = i;
+                    break;
+                }
+            }
+            return index;
+        };
+    }
+    
+    //lastIndexOf
+    if (typeof Array.prototype.lastIndexOf != 'function') {
+        Array.prototype.lastIndexOf = function (target, position) {
+            var index = 0, len = this.length - 1;
+            position = position * 1 || len;
+
+            for (var i = len; i > 0; i--) {
+                if (i <= position && this[i] === target) {
+                    index = i;
+                    break;
+                }
+            }
+            return index;
+        };
+    }
+</script>
+</body>
+</html>
