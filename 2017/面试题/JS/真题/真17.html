@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>今日头条</title>
+    <style>
+        *{margin:0; padding:0;}
+        #box {display: flex;}
+        .left {flex:1; min-height: 200px; height: 180px; background: green;}
+        .right {flex:0 0 200px; width: 200px; min-height: 200px; background: yellow;}
+    </style>
+</head>
+<body>
+<div id="box">
+    <div class="left">左侧自适应</div>
+    <div class="right">右侧固定宽</div>
+</div>
+
+<ul id="ul">
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+    <li>5</li>
+</ul>
+<script>
+    var oUl = document.querySelector('#ul');
+
+    oUl.onclick = function (ev) {
+        var ev = ev || event;
+        
+        var tag = ev.target.nodeName.toLowerCase();
+        var curTag = ev.currentTarget.nodeName.toLowerCase();
+        
+        console.log(`点击了${curTag}`);
+    }
+</script>
+</body>
+</html>
+<script>
+    //1.css实现两列布局,要求:(1)右侧固定宽度,左侧自适应屏幕宽度;(2)左右两列等高布局(3)左右两列的高度要求最小200px
+
+    //2.如何获取当前元素距离页面左上角的坐标
+    function getPos(obj) {
+        var pos = {left: 0, top: 0};
+        while (obj) {
+            pos.left += obj.offsetLeft;
+            pos.top += obj.offsetTop;
+            obj = obj.offsetParent;
+        }
+        return pos;
+    }
+
+    //3.BOM是什么?列举你知道的BOM对象
+    /*
+    * BOM是浏览器对象模型
+    * 包含:
+    *   window对象,location对象,navigator对象,history对象,screen对象
+    * */
+
+    //4.块级元素和内联元素的区别是什么?列举常见的块级元素和内联元素
+    /*
+    * 区别:块级元素支持宽高,独占一行
+    *      内联元素不支持宽高,以内容为填充
+    *
+    * 块级: p, h1-h6, div, ul, li, ol, dt, dd, dl
+    * 内联: img, a, span, strong, em, i, input, b
+    * */
+
+    //5.我们提升前端加载性能通常采用以下手段,请分别说明为什么采用这些手段
+    //a.静态资源合并
+    //b.静态资源通过CDN加载,并采用多域名
+    //c.采用HTTP缓存机制
+    //d.除以上几点外,你所使用的其他手段还有哪些?
+    /*
+    * 减少http请求
+    * 距离用户物理距离较短,方便获取静态资源
+    * */
+    
+    //6.输出的结果
+    if ([] == false) {
+        console.log(1);
+    }
+    
+    if ({} == false) {
+        console.log(2);
+    }
+    
+    if ([]) {
+        console.log(3);
+    }
+
+    //7.事件模型中,事件响应函数的event变量中的currentTarget与target的区别
+    /*
+    * currentTarget是绑定事件的元素
+    * target是触发事件的元素
+    * */
+
+    //8.请解释XSS与CSRF分别是什么,两者有什么关系?如何防御?
+    /*
+    * XSS:html,js恶意代码注入,获取cookie,登录用户身份做一些破坏
+    * CSRF:伪造用户的请求,模拟用户的操作
+    *
+    * 防御:XSS
+    *       防止显示html标签,把</>等符合转义
+    *      CSRF
+     *      请求中加入随机数
+    * */
+
+    //9.请解释"函数节流"的概念及其作用,并编写一个方法实现函数节流的功能
+    function throtte(fn, context) {
+        clearTimeout(fn.timer);
+        fn.timer = setTimeout(function () {
+            fn.call(context)
+        }, 500);
+    }
+
+    //10.请用算法实现,从给定的无序,不重复的数组A中,取出N个数,使其相加和为M。并给出算法的时间/空间复杂度
+</script>
